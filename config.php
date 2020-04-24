@@ -12,5 +12,5 @@
   'free_time' => '30min',
   'premium_time' => '4hours',
   'admin_time' => '24hours',
-  'admin_mail' => 'example@example.com'
+  'admin_mail' => 'admin@admin.com',
 );

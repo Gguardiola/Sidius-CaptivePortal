@@ -40,7 +40,7 @@
 							Login
 						</button>
 					</form>
-					<form class="login100-form" method="POST" action="register.php">
+					<form class="login100-form" method="POST" action="signup/register.php">
 						<button class="login100-form-btn-2">
 							Create new account (WIP)
 						</button>

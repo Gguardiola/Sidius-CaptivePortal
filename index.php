@@ -28,7 +28,7 @@ if (isset($_POST['email']) and isset($_POST['password']) and $_POST['email'] != 
     # if data[0] exists its because login successful and db found role.
     if ($data[0]) {
       # Update into entry last_login value
-      $query = "UPDATE users SET last_login=NOW() WHERE email='$data[0]' AND password='$data[1]'";
+      $query = "UPDATE $config[db_tableauth] SET last_login=NOW() WHERE email='$data[0]' AND password='$data[1]'";
       $sql = mysqli_query($db, $query);
       # Everything is done at this point. Go Firewall.
       $roleuser = $data[2];

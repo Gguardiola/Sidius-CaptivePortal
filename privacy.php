@@ -18,7 +18,7 @@
     
    <h2>Consent</h1>
     
-    By using our website, you hereby consent to our Privacy Policy and agree to its terms.
+    Creating an account, you hereby consent to our Privacy Policy and agree to its terms.
     
     <h2>Information we collect</h2>
     
