@@ -78,21 +78,19 @@ if(isset($_POST["email"])){
     }
 }
 elseif(isset($_POST["free"])){
-    $todo_ok = "free";
+    $plan = "FREE";
     include "register.php";
 }
 elseif(isset($_POST["standard"])){
-    print($_POST['username']);
-    print($_POST['password']);
-    print("standard");
-    
+    $plan = "STANDARD";
+    include "register.php";
 }
 elseif(isset($_POST["pro"])){
-    print($_POST['username']);
-    print($_POST['password']);
-    print("pro");
-    
+    $plan = "PRO";
+    include "register.php";
 }
+
+
 elseif($_POST['contract'] == "agree"){
     $db = mysqli_connect($config['db_server'], $config['db_username'], $config['db_password'], $config['db_name']);
     # In case of error connecting send client back to login.
@@ -105,17 +103,29 @@ elseif($_POST['contract'] == "agree"){
     else {
         $email = mysqli_real_escape_string($db, $_POST['username']);
         $password = mysqli_real_escape_string($db, $_POST['password']);
-        $query = "INSERT into $config[db_tableauth] values(NULL,'$email', SHA2('$password',512),'free',now(),TIMESTAMP('9999-00-00',  '00:00:00'))";
-        $sql = mysqli_query($db, $query);
-        $data = mysqli_fetch_row($sql);    
-        header("location:http://google.es/");
+        $plan = $_POST["plan_concept"];
+
+
+        if($plan == "FREE"){
+            $query = "INSERT into $config[db_tableauth] values(NULL,'$email', SHA2('$password',512),'FREE',now(),TIMESTAMP('9999-00-00',  '00:00:00'))";
+            $sql = mysqli_query($db, $query);
+            $data = mysqli_fetch_row($sql);    
+            $url_portal = $_SERVER['REQUEST_URI'];
+            $url_parsed = parse_url($url_portal, PHP_URL_HOST);
+            header("location:".$url_parsed."/");
+
+        }
+        else{
+
+            include "tpv.php";
+        }
     }
 
     
 
 }
 elseif(!isset($_POST['contract']) and isset($_POST["username"]) and isset($_POST["password"])){
-$todo_ok = "free";
+$plan = $_POST['plan_concept'];
 $error = "<p align=center class='alert alert-danger'>You need to accept the privacy policy and terms of service to create the account. </p>";
 include "register.php";
 

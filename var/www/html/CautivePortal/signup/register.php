@@ -76,7 +76,7 @@
                   $captcha= randomText(8);
                   #inicia la sesion captcha para poder pasarla a login y comparar con el post introducido por el usuario
                   $_SESSION['captcha'] = $captcha;     
-                if(!isset($newuser_data) and !isset($todo_ok) and !isset($_POST["contract"])){
+                if(!isset($newuser_data) and !isset($plan) and !isset($_POST["contract"])){
                   print('
                   <h4>Page 1/3 - User information</h4>
                   <br>
@@ -114,7 +114,7 @@
                   }
 
 
-                  if(isset($newuser_data) and !isset($todo_ok)){
+                  if(isset($newuser_data) and !isset($plan)){
                       print('
                       <h4>Page 2/3 - Select your plan</h4>
                       <br>
@@ -143,7 +143,7 @@
                                 <p>Choose this plan if you only want to access the internet for casual stuff and you want more speed.<p>
                                 <br>
                                 <br>
-                                <h2>0,99€<h2>
+                                <h2>1€<h2>
                                 <br>
                                 <form method="POST" action="newuser.php">
                                     <input type="hidden" name="username" value="'.$newuser_data[0].'">
@@ -159,7 +159,7 @@
 
                             <p>Choose this plan if you only want to access the internet for important or business stuff and you want more speed.<p>
                             <br>
-                            <h2>2,99€<h2>
+                            <h2>3€<h2>
                             <br>
                             <form method="POST" action="newuser.php">
                                 <input type="hidden" name="username" value="'.$newuser_data[0].'">
@@ -178,37 +178,48 @@
 
                   }
 
-                  if(isset($todo_ok)){
-                      if($todo_ok == "free"){
-                          print('
-                          <p>Page 3/3 - Confirmation</p>
-                          <br>
-                          <div style="text-align: justify;text-justify: inter-word;">                          
-                            <p>You selected the <strong>FREE</strong> plan. You can change this in the future through the login page.</p>
-                            <p>When you click on CREATE ACCOUNT, you will automatically redirected to the login page</p>
-                            <form method="POST" action"newuser.php">
-                                <input type="hidden" name="username" value="'.$_POST['username'].'">
-                                <input type="hidden" name="password" value="'.$_POST['password'].'">                    
-                                <input style ="display:inline" type="checkbox" name="contract" value="agree">
-                                <small style ="display:inline" id="contractInfo" class="form-text text-muted">I confirm that i have read, consent and agree with the <a target="_blank" href="/privacy.php">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a>.</small><br><br>
-                
-                                <input class="btn btn-primary btn-lg btn-block" type="submit" value="CREATE ACCOUNT">
-                            </form>
-                          </div>
-                          <br>
-                          <br>
+                  if(isset($plan)){
 
-                          ');
+                    print('
+                    <h4>Page 3/3 - Confirmation</h4>
+                    <br>
+                    <div style="text-align: justify;text-justify: inter-word;">                          
+                      <p>You selected the <strong>'.$plan.'</strong> plan. You can change this in the future through the login page.</p>
+                      ');
+                      if($plan == "FREE"){
+                        print("<p>When you click on CREATE ACCOUNT, you will automatically redirected to the login page.</p>");
 
-                          if(isset($error)){
-                            print('
-                            <div align=center class="container">
-                                  '.$error.'
-                            </div>
-                            
-                            
-                            ');
-                          }
+                        
+                      }
+                      else{
+                        print("<p>When you click on CREATE ACCOUNT, you will automatically redirected to the payment gateway.</p>");
+                      }
+
+                      print('
+                      <form method="POST" action"newuser.php">
+                          <input type="hidden" name="username" value="'.$_POST['username'].'">
+                          <input type="hidden" name="password" value="'.$_POST['password'].'">                    
+                          <input type="hidden" name="plan_concept" value="'.$plan.'">   
+                          <input style ="display:inline" type="checkbox" name="contract" value="agree">
+                          <small style ="display:inline" id="contractInfo" class="form-text text-muted">I confirm that i have read, consent and agree with the <a target="_blank" href="/privacy.php">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a>.</small><br><br>
+          
+                          <input class="btn btn-primary btn-lg btn-block" type="submit" value="CREATE ACCOUNT">
+                      </form>
+                    </div>
+                    <br>
+                    <br>
+
+                    ');
+
+                    if(isset($error)){
+                      print('
+                      <div align=center class="container">
+                            '.$error.'
+                      </div>
+                      
+                      
+                      ');
+            
                       }
                   }
           
@@ -220,6 +231,7 @@
         </div>
 
     </div>
+    <script src="../bootstrap/js/jquery-3.5.0.min.js"></script>    
     <script src="signup-styles/material.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../bootstrap/js/bootstrap.js"></script>

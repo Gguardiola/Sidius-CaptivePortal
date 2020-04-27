@@ -13,4 +13,5 @@
   'premium_time' => '4hours',
   'admin_time' => '24hours',
   'admin_mail' => 'admin@admin.com',
+  'domain' => 'aeropuerto.webredirect.org',  
 );
