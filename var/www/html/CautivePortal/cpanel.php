@@ -27,15 +27,15 @@ function get_users($config) {
   $db = mysqli_connect($config['db_server'], $config['db_username'], $config['db_password'], $config['db_name']);
   if (!$db) {
     }
-    $query = "SELECT COUNT(*) FROM $config[db_tableauth] WHERE role='free'";
+    $query = "SELECT COUNT(*) FROM $config[db_tableauth] WHERE role='FREE'";
     $sql = mysqli_query($db, $query);
     $data = mysqli_fetch_row($sql);
     $users['free'] = $data[0];
-    $query = "SELECT COUNT(*) FROM $config[db_tableauth] WHERE role='premium'";
+    $query = "SELECT COUNT(*) FROM $config[db_tableauth] WHERE role='STANDARD'";
     $sql = mysqli_query($db, $query);
     $data = mysqli_fetch_row($sql);
     $users['premium'] = $data[0];
-    $query = "SELECT COUNT(*) FROM $config[db_tableauth] WHERE role='premium1'";
+    $query = "SELECT COUNT(*) FROM $config[db_tableauth] WHERE role='PRO'";
     $sql = mysqli_query($db, $query);
     $data = mysqli_fetch_row($sql);
     $users['premium1'] = $data[0];
@@ -191,12 +191,12 @@ function print_db($config, $data, $error) {
          </form>
           <div class="db">
           <table>
-            <th class="titol">ID<th class="titol2">Email<th class="titol3">Role<th class="titol4">Last Login<th class="titol5">Creation Date
+            <th class="titol">ID<th class="titol2">Email<th class="titol3">Role<th class="titol4">Last Login<th class="titol5">Creation Date<th class="titol6">Payment Status
 '
   );
   while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
       print("<tr class='fila'>");
-      print("<td>" . $row['id'] . "</td><td class='noalign'>" . $row['email'] . "</td><td>" . $row['role'] . "</td><td>" . $row['last_login'] . "</td>" . "<td>" . $row['creation_date'] . "</td>");
+      print("<td>" . $row['order_ID'] . "</td><td class='noalign'>" . $row['email'] . "</td><td>" . $row['role'] . "</td><td>" . $row['last_login'] . "</td>" . "<td>" . $row['creation_date'] . "</td><td>" . $row['payment_status'] . "</td>");
       print("</tr>");
 }
 
@@ -337,7 +337,7 @@ if ($_GET['menu'] == 2) {
       $search = mysqli_real_escape_string($db, $_POST['search']);
       $order = mysqli_real_escape_string($db, $_POST['order']);
       # Execute Query
-      $query = "SELECT id,email,role,creation_date,last_login FROM $config[db_tableauth] WHERE $type LIKE '$search%' ORDER BY $type $order";
+      $query = "SELECT order_ID,email,role,creation_date,last_login,payment_status FROM $config[db_tableauth] WHERE $type LIKE '$search%' ORDER BY $type $order";
       $data = mysqli_query($db, $query);
       print_db($config,$data, $error);
       return($data);
@@ -346,7 +346,7 @@ if ($_GET['menu'] == 2) {
   elseif ($_GET['form'] == 2) {
     if ($_POST['delete'] != "") {
       $delete = mysqli_real_escape_string($db, $_POST['delete']);
-      $query = "DELETE FROM $config[db_tableauth] WHERE id='$delete'";
+      $query = "DELETE FROM $config[db_tableauth] WHERE order_ID='$delete'";
       $error = mysqli_query($db, $query);
       $error = "Deleted id " . $delete;
       print_db($config, $data, $error);

@@ -10,21 +10,18 @@
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <meta name="apple-mobile-web-app-title" content="<?php print($config['captivename']); ?>">
 
-    <link rel="shortcut icon" href="images/favicon.png">
 
     <link rel="stylesheet" href="signup-styles/googlefonts.css">
-    <link rel="stylesheet" href="signup-styles/material-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="signup-styles/material.teal-red.min.css">
     <link rel="stylesheet" href="signup-styles/styles.css">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
     #view-source {
       position: fixed;
@@ -34,6 +31,12 @@
       margin-right: 40px;
       margin-bottom: 40px;
       z-index: 900;
+    }
+    #captcha{
+    -webkit-user-select: none;
+        -moz-user-select: -moz-none;
+          -ms-user-select: none;
+              user-select: none;
     }
     </style>
   </head>
@@ -64,12 +67,12 @@
                   session_start();
                   #Funcion que genera el capcha a partir de una cadena de numeros y letras
                   function randomText($length) {
-                  $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
-                  #Recoge un valor random y lo añade al captcha hasta acabar la longitud
-                  for($i=0;$i<$length;$i++) {
-                      $key .= $pattern{rand(0,35)};
-                  }
-                  return $key;
+                    $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
+                    #Recoge un valor random y lo añade al captcha hasta acabar la longitud
+                    for($i=0;$i<$length;$i++) {
+                        $key .= $pattern{rand(0,35)};
+                    }
+                    return $key;
                   }
 
                   #llama a la funcion para generar el captcha
@@ -86,7 +89,7 @@
                           <input class="form-control" type="email" name="email" placeholder="example@example.com"><br>
                           <input class="form-control" type="password" name="password" placeholder="Password"><br>
                           <input class="form-control" type="password" name="passwordConfirm" placeholder="Confirm password"><br>
-                          <label class="alert alert-dark" for="captcha">'.$captcha.'</label><input class="form-control" type="text" name="captcha">
+                          <label id="captcha" class="alert alert-dark" for="captcha">'.$captcha.'</label><input class="form-control" type="text" name="captcha">
                           <small id="captchaInfo" class="form-text text-muted">Type the characters you see in the picture above.</small><br><br>
                           <input class="btn btn-primary" type="submit" value="Next page">
 
@@ -227,13 +230,13 @@
 
 
           </div>
-          <a href="../login/login.php" class="btn btn-link">Go back</a>
+          <a href="../index.php" class="btn btn-link">Go back</a>
         </div>
 
     </div>
-    <script src="../bootstrap/js/jquery-3.5.0.min.js"></script>    
     <script src="signup-styles/material.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>

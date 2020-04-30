@@ -35,19 +35,19 @@ function get_date($config) {
 
 $date = get_date($config);
 # Free Users rules to apply.
-if ($roleuser == "free") {
+if ($roleuser == "FREE") {
   exec("sudo iptables -t nat -I PREROUTING 2 -i $config[internal_int] -m mac --mac-source $MAC -m time --datestart $date[start] --datestop $date[stop_free] -j ACCEPT");
   exec("sudo iptables -A FORWARD -m mac --mac-source $MAC -m limit --limit $free/sec -m time --datestart $date[start] --datestop $date[stop_free] ! -d $config[external_subnet] -i $config[internal_int] -o $config[external_int] -j ACCEPT");
   header("Location: https://google.es/");
 }
 # Premium Users rule to apply.
-elseif ($roleuser == "premium") {
+elseif ($roleuser == "STANDARD") {
   exec("sudo iptables -t nat -I PREROUTING 2 -i $config[internal_int] -m mac --mac-source $MAC -m time --datestart $date[start] --datestop $date[stop_premium] -j ACCEPT");
   exec("sudo iptables -A FORWARD -m mac --mac-source $MAC -m limit --limit $premium/sec -m time --datestart $date[start] --datestop $date[stop_premium] ! -d $config[external_subnet] -i $config[internal_int] -o $config[external_int] -j ACCEPT");
   header("Location: https://google.es/");
 }
 # Premium Users 1 rule to apply.
-elseif ($roleuser == "premium") {
+elseif ($roleuser == "PRO") {
   exec("sudo iptables -t nat -I PREROUTING 2 -i $config[internal_int] -m mac --mac-source $MAC -m time --datestart $date[start] --datestop $date[stop_premium] -j ACCEPT");
   exec("sudo iptables -A FORWARD -m mac --mac-source $MAC -m limit --limit $premium1/sec -m time --datestart $date[start] --datestop $date[stop_premium] ! -d $config[external_subnet] -i $config[internal_int] -o $config[external_int] -j ACCEPT");
   header("Location: https://google.es/");

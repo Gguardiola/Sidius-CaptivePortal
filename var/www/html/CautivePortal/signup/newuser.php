@@ -104,15 +104,14 @@ elseif($_POST['contract'] == "agree"){
         $email = mysqli_real_escape_string($db, $_POST['username']);
         $password = mysqli_real_escape_string($db, $_POST['password']);
         $plan = $_POST["plan_concept"];
-
+        $order = time()."-F";
 
         if($plan == "FREE"){
-            $query = "INSERT into $config[db_tableauth] values(NULL,'$email', SHA2('$password',512),'FREE',now(),TIMESTAMP('9999-00-00',  '00:00:00'))";
+            $query = "INSERT into $config[db_tableauth] values('$order','$email', SHA2('$password',512),'FREE',now(),TIMESTAMP('9999-00-00',  '00:00:00'),'FREE')";
             $sql = mysqli_query($db, $query);
             $data = mysqli_fetch_row($sql);    
-            $url_portal = $_SERVER['REQUEST_URI'];
-            $url_parsed = parse_url($url_portal, PHP_URL_HOST);
-            header("location:".$url_parsed."/");
+
+            header("location:../index.php");
 
         }
         else{
@@ -131,7 +130,7 @@ include "register.php";
 
 }
 else{
-    header("location:register.php");
+    header("location:../index.php");
 
 }
 

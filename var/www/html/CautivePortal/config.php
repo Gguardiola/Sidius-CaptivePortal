@@ -14,4 +14,5 @@
   'admin_time' => '24hours',
   'admin_mail' => 'admin@admin.com',
   'domain' => 'aeropuerto.webredirect.org',  
+  'payment_gateway' => 'https://sis-t.redsys.es:25443/',
 );

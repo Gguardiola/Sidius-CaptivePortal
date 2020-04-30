@@ -16,7 +16,7 @@ if (isset($_POST['email']) and isset($_POST['password']) and $_POST['email'] != 
   else {
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
-    $query = "SELECT email,password,role FROM $config[db_tableauth] WHERE lower(email)='$email' AND password=SHA2('$password',512)";
+    $query = "SELECT email,password,role,payment_status,creation_date FROM $config[db_tableauth] WHERE lower(email)='$email' AND password=SHA2('$password',512)";
     $sql = mysqli_query($db, $query);
     $data = mysqli_fetch_row($sql);
 
@@ -24,15 +24,20 @@ if (isset($_POST['email']) and isset($_POST['password']) and $_POST['email'] != 
     if (!$data[0]) {
       $error = "ERROR: Invalid email or password.";
     }
-
     # if data[0] exists its because login successful and db found role.
     if ($data[0]) {
-      # Update into entry last_login value
-      $query = "UPDATE $config[db_tableauth] SET last_login=NOW() WHERE email='$data[0]' AND password='$data[1]'";
-      $sql = mysqli_query($db, $query);
-      # Everything is done at this point. Go Firewall.
-      $roleuser = $data[2];
-      include "iptables.php";
+      if($data[3] == "UNPAID"){
+        $error = "ERROR: The payment status of your ".$data[2]." account is UNPAID. Please change it to FREE or pay your plan clicking the button below. YOU HAVE 7 DAYS COUNTING FROM ".$data[4]." TO RENEW!. If you thing this is a problem contact with the captive portal administrator <strong>".$config['admin_mail']."</strong>";
+        include $config['loginphp_file'];
+      }
+      else{
+        # Update into entry last_login value
+        $query = "UPDATE $config[db_tableauth] SET last_login=NOW() WHERE email='$data[0]' AND password='$data[1]'";
+        $sql = mysqli_query($db, $query);
+        # Everything is done at this point. Go Firewall.
+        $roleuser = $data[2];
+        include "iptables.php";
+      }
     }
   }
 }
