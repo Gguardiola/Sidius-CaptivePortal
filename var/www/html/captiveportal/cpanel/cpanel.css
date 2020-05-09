@@ -1,0 +1,117 @@
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	outline: 0;
+	box-shadow: none;
+	border: 0 !important;
+	background: white;
+	background-image: none;
+  }
+  /* Remove IE arrow */
+  select::-ms-expand {
+	display: none;
+  }
+  /* Custom Select */
+  .select {
+	position: relative;
+	display: flex;
+	width: 20em;
+	height: 3em;
+	line-height: 3;
+	background: white;
+	overflow: hidden;
+	border-radius: .25em;
+  }
+  select {
+	flex: 1;
+	padding: 0 .5em;
+	color: black;
+	cursor: pointer;
+  }
+  /* Arrow */
+  .select::after {
+	content: '\25BC';
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 1em;
+	background: #00BCD4;
+	cursor: pointer;
+	pointer-events: none;
+	-webkit-transition: .25s all ease;
+	-o-transition: .25s all ease;
+	transition: .25s all ease;
+  }
+  /* Transition */
+  .select:hover::after {
+	color: rgb(5, 106, 119);
+  }
+  
+
+.cardContainer {
+	width:500px;
+	display:inline-block;
+}
+.cardContainerDown {
+	width:500px;
+}
+.cardTitle {
+	background-color:#00BCD4;
+	max-width:100%;
+	max-height:100%;
+	margin-top:-24px;
+	padding-bottom:5px;
+	text-align:center;
+	
+
+
+}
+
+.cardBody {
+	width:500px;
+	padding:20px;
+
+
+
+}
+
+.cardh4 {
+	padding-top:20px;
+	opacity: 0.7;
+
+}
+
+.cardContent{
+	margin-left:-8px;
+	width:100%;
+
+
+}
+
+.alert-info {
+ color: #0c5460;
+ background-color: #d1ecf1;
+ border: 1px solid #0c5460;
+ padding:10px;
+ width:438px;
+ margin-bottom: 1rem;
+ 
+ border-radius: .25rem;
+
+}
+
+
+.alert-danger {
+	color: #721c24;
+    background-color: #f8d7da;
+	border: 1px solid #f5c6cb;
+	padding:10px;
+	width:438px;
+	margin-bottom: 1rem;
+	
+	border-radius: .25rem;
+   
+}
+

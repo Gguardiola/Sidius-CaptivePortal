@@ -1,4 +1,4 @@
- <?php return array (
+<?php return array (
   'captivename' => 'Aeroport del Prat Wi-Fi',
   'loginphp_file' => 'login/login.php',
   'db_name' => 'portalcautivo',
@@ -11,6 +11,7 @@
   'external_subnet' => '10.110.0.0/16',
   'free_time' => '30min',
   'premium_time' => '4hours',
+  'premium1_time' => '8hours',
   'admin_time' => '24hours',
   'admin_mail' => 'admin@admin.com',
   'domain' => 'aeropuerto.webredirect.org',  

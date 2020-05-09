@@ -8,7 +8,7 @@ if (!isset($_SESSION['config'])) {
 }
 
 # Include update config from file for changes.
-$config = include 'config.php';
+$config = include '../config.php';
 
 # Connect to database by default to display error.
 $db = mysqli_connect($config['db_server'], $config['db_username'], $config['db_password'], $config['db_name']);
@@ -249,7 +249,7 @@ function print_db($config, $data, $error) {
 <?php
 # If Not Page - First Page
 if ($_GET['menu'] == NULL) {
-  header("Location: cpanel.php?menu=1");
+  header("Location: cpanel/cpanel.php?menu=1");
 
 }
 

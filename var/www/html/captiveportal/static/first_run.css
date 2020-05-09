@@ -1,3 +1,30 @@
+.alert-info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border: 1px solid #0c5460;
+  padding:10px;
+  width:438px;
+  margin-bottom: 1rem;
+  
+  border-radius: .25rem;
+ 
+ }
+ 
+ 
+ .alert-danger {
+   color: #721c24;
+   background-color: #f8d7da;
+   border: 1px solid #f5c6cb;
+   padding:10px;
+   width:438px;
+   margin-bottom: 1rem;
+   
+   border-radius: .25rem;
+    
+ }
+ 
+
+
 * {
 	margin: 0px;
 	padding: 0px;
