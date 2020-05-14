@@ -1,0 +1,8 @@
+# DHCP Declaration
+subnet subnetIP netmask subnetMASKIP {
+	range firstRangeIP lastRangeIP;
+	option domain-name-servers gatewayIP;
+	option routers gatewayIP;
+	default-lease-time 600;
+	max-lease-time 3600;
+}
