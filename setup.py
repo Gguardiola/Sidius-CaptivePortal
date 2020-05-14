@@ -554,6 +554,12 @@ def permissions_setup():
 
 def goodbye():
     print("")
+    print(Fore.BLUE + "Restarting the services...")
+    print(Style.RESET_ALL) 
+    os.system("service apache2 restart")
+    os.system("service bind9 restart")
+    os.system("service isc-dhcp-server restart")    
+    print("")
     print(Fore.GREEN + "CONGRATULATIONS! EVERYTHING IS DONE.")
     print("PLEASE, OPEN A BROWSER AND GO TO yourdomain.org/first_run.php TO FINISH THE INSTALLATION.")
     print(Style.RESET_ALL)       
