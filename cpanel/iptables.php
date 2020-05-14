@@ -6,12 +6,15 @@
 # If you change those values FLUSH CONCESSIONS
 
 # Medium Speed
-$free = 4;
+#~150KB/s
+$free = 5;
 
 # High Speed
+#~650kbps - 1MB/s
 $premium = 10;
 
 # High Speed x2
+#~1.0MB/s - 2MB/s
 $premium1 = 20;
 
 # Ultra High Speed
@@ -55,6 +58,9 @@ if ($roleuser == "FREE") {
 
   $status = "CREATED FREE CONCESSION SUCCESSFULY";
   loggerCONCESSION($status,$MAC);
+  session_set_cookie_params(1800);
+  session_start();
+  $_SESSION['user'] = [$email,$roleuser];
 }
 # Premium Users rule to apply.
 elseif ($roleuser == "STANDARD") {
@@ -64,6 +70,9 @@ elseif ($roleuser == "STANDARD") {
 
   $status = "CREATED STANDARD CONCESSION SUCCESSFULY";
   loggerCONCESSION($status,$MAC);
+  session_set_cookie_params(14400);
+  session_start();
+  $_SESSION['user'] = [$email,$roleuser];
 }
 # Premium Users 1 rule to apply.
 elseif ($roleuser == "PRO") {
@@ -73,6 +82,9 @@ elseif ($roleuser == "PRO") {
 
   $status = "CREATED PRO CONCESSION SUCCESSFULY";
   loggerCONCESSION($status,$MAC);
+  session_set_cookie_params(28800);
+  session_start();
+  $_SESSION['user'] = [$email,$roleuser];
 }
 
 # Admin Users rule to apply.
@@ -87,6 +99,7 @@ elseif ($roleuser == "administrator") {
 
   $status = "CREATED ADMIN CONCESSION SUCCESSFULY";
   loggerCONCESSION($status,$MAC);
+  
   $_SESSION['config'] = $config;
   header("location:../index.php");
 }

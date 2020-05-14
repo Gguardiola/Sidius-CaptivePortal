@@ -44,6 +44,8 @@ if(strpos($_SERVER['HTTP_REFERER'], $config['payment_gateway']) !== false){
           $sql = mysqli_query($db, $query);
           $data = mysqli_fetch_row($sql);    
 
+
+
           //if exist an user with the same order_ID, the verification is complete. Updating the payment status to PAID
           //NOW THE USER WILL BE REDIRECTED TO THE PAYMENT VERIFICATION DONE AND READY TO LOG IN
           if($data != NULL){
@@ -54,6 +56,16 @@ if(strpos($_SERVER['HTTP_REFERER'], $config['payment_gateway']) !== false){
             $query = "UPDATE $config[db_tableauth] SET payment_status = 'PAID' where order_ID = '$order_decoded'";
             $sql = mysqli_query($db, $query);
             $data = mysqli_fetch_row($sql);  
+
+
+
+            $query = "SELECT email,role from $config[db_tableauth] where order_ID = '$order_decoded'";
+            $sql = mysqli_query($db, $query);
+            $sessionReload = mysqli_fetch_row($sql);  
+
+            session_set_cookie_params(1800);
+            session_start();
+            $_SESSION['user'] = [$sessionReload[0],$sessionReload[1]];
 
             header("location:payment-ok.php");
           }

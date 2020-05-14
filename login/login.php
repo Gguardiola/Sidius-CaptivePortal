@@ -69,64 +69,71 @@
           ?>
             <br>
             <br>
-            <section class="mdl-cell mdl-cell--4-col">
+        <section class="mdl-cell mdl-cell--4-col">
 
-				<div>
-					<h1>Wi-Fi login</h1>
-					<img align=center style="max-width: 100%;max-height: 100%" src="login/images/logo.png">					
-					<h5 style="opacity:0.6">You need to login at <strong><?php print($config['captivename']); ?></strong> to access the internet<h5>        
-					<br>
-						<?php
-							//if the newuser.php detects an error from the form above (like empty field or wrong captcha) it will print the specific error
-							if(isset($error)){
-								
-								print('
-								<div align=center class="container">
-										'.$error.'
-								</div>
-								
-								
-								');
-							
-							}
-						
-							?>		
-					<br>			
-					<div align=center>
-						<form method ="POST" action ="index.php">                  
-						<div class="mdl-textfield mdl-js-textfield">
-							
-							<input style="margin-bottom:9px" id="email" class="mdl-textfield__input" type="text" name="email">
-							<label class="mdl-textfield__label" for="email">example@example.com</label>
-						</div>
-						<div class="mdl-textfield mdl-js-textfield">
-							<input style="margin-bottom:9px" id="password" class="mdl-textfield__input" type="password" name="password" >
-							<label class="mdl-textfield__label" for="password">Password</label>
-						</div>
+        <div>
+          <h1>Wi-Fi login</h1>
+          <img align=center style="max-width: 100%;max-height: 100%" src="login/images/logo.png">					
+          <h5 style="opacity:0.6">You need to login at <strong><?php print($config['captivename']); ?></strong> to access the internet<h5>        
+          <br>
+            <?php
+              //if the newuser.php detects an error from the form above (like empty field or wrong captcha) it will print the specific error
+              if(isset($error)){
+                
+                print('
+                <div align=center class="container">
+                    '.$error.'
+                </div>
+                
+                
+                ');
+              
+              }
+            
+              ?>		
+          <br>			
+          <div align=center>
+            <form method ="POST" action ="index.php">                  
+            <div class="mdl-textfield mdl-js-textfield">
+              
+              <input style="margin-bottom:9px" id="email" class="mdl-textfield__input" type="text" name="email">
+              <label class="mdl-textfield__label" for="email">example@example.com</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input style="margin-bottom:9px" id="password" class="mdl-textfield__input" type="password" name="password" >
+              <label class="mdl-textfield__label" for="password">Password</label>
+            </div>
               <input type="hidden" name="userinfo" value="<?php echo $_SERVER['HTTP_USER_AGENT']?>">
-							<button style="padding-left:46px;padding-right:46px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">Login</button>
+              <button style="padding-left:46px;padding-right:46px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">Login</button>
 
-						
-						</form>
-						<form method ="POST" action ="../signup/register.php">                  
-						<div style="margin-top:15px">
-            <button style="padding-left:15px;padding-right:15px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">ACCOUNT SETTINGS WIP</button>
+            
+            </form>
+            <?php if(isset($_SESSION['user'])){
+              print('
+              <form method ="POST" action ="../signup/accountSettings.php">                  
+              <div style="margin-top:15px">
+              <button style="padding-left:15px;padding-right:15px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">ACCOUNT SETTINGS</button>
+  
+              </div>
+              </form>              
 
-						</div>
-						</form>
-						<form method ="POST" action ="../signup/register.php">                  
-						<div style="margin-top:15px">
-
-							<input class="btn btn-link" type="submit" value="Don't have account?">
-						</div>
-						</form>
-
-					</div>
+              ');
 
 
+            }?>
+            <form method ="POST" action ="../signup/register.php">                  
+            <div style="margin-top:15px">
 
-				
-				</div>
+              <input class="btn btn-link" type="submit" value="Don't have account?">
+            </div>
+            </form>
+
+          </div>
+
+
+
+        
+        </div>
 			</section>
         </div>
 

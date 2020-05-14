@@ -100,7 +100,26 @@
                             $data = mysqli_fetch_row($sql);                 
                           }
                           else{
-                            header("location:../index.php");
+                            if(isset($upgrade)){
+                              $query = "UPDATE $config[db_tableauth] SET payment_status = 'UNPAID' where email = '$email'";
+
+                              $sql = mysqli_query($db, $query);
+                              $data = mysqli_fetch_row($sql);                     
+
+                              $query = "UPDATE $config[db_tableauth] SET role = 'STANDARD' where email = '$email'";
+
+                              $sql = mysqli_query($db, $query);
+                              $data = mysqli_fetch_row($sql);  
+                              
+                              $query = "UPDATE $config[db_tableauth] SET order_ID = '$order' where email = '$email'";
+
+                              $sql = mysqli_query($db, $query);
+                              $data = mysqli_fetch_row($sql);   
+
+                            }
+                            else{
+                              header("location:../index.php");
+                            }
 
                           }
                       }
@@ -118,10 +137,26 @@
                             $sql = mysqli_query($db, $query);
                             $data = mysqli_fetch_row($sql);  
                           }
+                          if(isset($upgrade)){
+                            $query = "UPDATE $config[db_tableauth] SET payment_status = 'UNPAID' where email = '$email'";
+
+                            $sql = mysqli_query($db, $query);
+                            $data = mysqli_fetch_row($sql);                     
+
+                            $query = "UPDATE $config[db_tableauth] SET role = 'STANDARD' where email = '$email'";
+
+                            $sql = mysqli_query($db, $query);
+                            $data = mysqli_fetch_row($sql);                     
+
+                            $query = "UPDATE $config[db_tableauth] SET order_ID = '$order' where email = '$email'";
+
+                            $sql = mysqli_query($db, $query);
+                            $data = mysqli_fetch_row($sql);    
+
+                          }
                           else{
                             header("location:../index.php");
-
-                          }                                                                                              
+                          }                                                                                      
 
                       }
 

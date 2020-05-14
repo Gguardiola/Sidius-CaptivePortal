@@ -170,7 +170,7 @@
 
                             <p>Choose this plan if you only want to access the internet for casual stuff and you dont care about the speed.<p>
                             <br>
-                            <br>
+
                             <h2>0€<h2>
                             <br>
                             <form method="POST" action="newuser.php">

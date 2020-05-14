@@ -155,7 +155,13 @@ if (isset($_POST['email']) and isset($_POST['password']) and $_POST['email'] != 
     # if data[0] exists its because login successful and db found role.
     if ($data[0]) {
       if($data[3] == "UNPAID"){
-        $error = "<p align=center class='alert alert-danger'> The payment status of your ".$data[2]." account is UNPAID. Please change it to FREE or pay your plan clicking the button below. YOU HAVE 7 DAYS COUNTING FROM ".$data[4]." TO RENEW!. If you think this is a problem contact with the captive portal administrator <strong>".$config['admin_mail']."</strong></p>";
+        $error = "<p align=center class='alert alert-danger'> The payment status of your ".$data[2]." account is UNPAID. Please change it to FREE or pay your plan clicking the ACCOUNT SETTINGS button. YOU HAVE 7 DAYS COUNTING FROM ".$data[4]." TO RENEW!. If you think this is a problem contact with the captive portal administrator <strong>".$config['admin_mail']."</strong></p>";
+        
+
+        session_set_cookie_params(1800);
+        session_start();
+        $_SESSION['user'] = [$email,$data[2]];
+        
         include $config['loginphp_file'];
       }
       else{

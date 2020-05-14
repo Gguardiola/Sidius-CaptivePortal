@@ -195,22 +195,41 @@
 
 						<div >
 							<form method="POST" action="first_run.php?page=3">
-								<h6>WiFi internal interface</h6>
+								<h6>Internal interface</h6>
 								<div class="mdl-textfield mdl-js-textfield">
 									<input style="margin-bottom:9px" id="internal_int" class="mdl-textfield__input" type="text" name="internal_int">
 									<label class="mdl-textfield__label" for="internal_int">Example: enp0s3</label>
 								</div>
+								<h6>Internal interface IP address</h6>
+								<div class="mdl-textfield mdl-js-textfield">
+									<input style="margin-bottom:9px" id="internal_ip" class="mdl-textfield__input" type="text" name="internal_ip">
+									<label class="mdl-textfield__label" for="internal_ip">Example: 10.110.0.1</label>
+								</div>	
 								<h6>WiFi External interface</h6>
 								<div class="mdl-textfield mdl-js-textfield">
 									<input style="margin-bottom:9px" id="external_int" class="mdl-textfield__input" type="text" name="external_int">
 									<label class="mdl-textfield__label" for="external_int">Example: eth0</label>
-								</div>
+								</div>	
 								<h6>External subnet</h6>
 								<div class="mdl-textfield mdl-js-textfield">
 									<input style="margin-bottom:9px" id="external_subnet" class="mdl-textfield__input" type="text" name="external_subnet">
 									<label class="mdl-textfield__label" for="external_subnet">Example: 10.110.0.0/16</label>
 								</div>
-								
+								<h6>External default gateway</h6>
+								<div class="mdl-textfield mdl-js-textfield">
+									<input style="margin-bottom:9px" id="external_gateway" class="mdl-textfield__input" type="text" name="external_gateway">
+									<label class="mdl-textfield__label" for="external_gateway">Example: 10.110.0.1</label>
+								</div>	
+								<h6>Primary DNS forwarder</h6>
+								<div class="mdl-textfield mdl-js-textfield">
+									<input style="margin-bottom:9px" id="dnsforwarder1" class="mdl-textfield__input" type="text" value="8.8.8.8" name="dnsforwarder1">
+									<label class="mdl-textfield__label" for="dnsforwarder1">Example: 8.8.8.8</label>
+								</div>
+								<h6>Secondary DNS forwarder</h6>
+								<div class="mdl-textfield mdl-js-textfield">
+									<input style="margin-bottom:9px" id="dnsforwarder2" class="mdl-textfield__input" type="text" value="8.8.8.8" name="dnsforwarder2">
+									<label class="mdl-textfield__label" for="dnsforwarder2">Example: 8.8.4.4</label>
+								</div>						
 								<br>									
 								<button style="padding-left:46px;padding-right:46px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">CONTINUE</button>
 							</form>
@@ -399,19 +418,23 @@
 					elseif ($_GET['page'] == "3") {
 							# First login
 
-							if (!isset($_POST['internal_int']) or !isset($_POST['external_int'])) {
+							if (!isset($_POST['internal_int'])or !isset($_POST['external_subnet']) or !isset($_POST['external_int'])or !isset($_POST['internal_ip'])or !isset($_POST['external_gateway'])or !isset($_POST['dnsforwarder1'])or !isset($_POST['dnsforwarder2'])) {
 								print_page_firewall_setup($error);
 							}
 							# If parameters are empty.
-							elseif ($_POST['internal_int'] == "" or $_POST['external_int'] == "") {
+							elseif ($_POST['internal_int'] == "" or $_POST['external_subnet'] == "" or $_POST['external_int'] == "" or $_POST['internal_ip'] == "" or $_POST['external_gateway'] == "" or $_POST['dnsforwarder1'] == "" or $_POST['dnsforwarder2'] == "") {
 								$error = "Some parameters are missing. Please try again.";
 								print_page_firewall_setup($error);
 							}
 							else {
 								# Data should be good
 								$config['internal_int'] = "$_POST[internal_int]";
+								$config['internal_ip'] = "$_POST[internal_ip]";
 								$config['external_int'] = "$_POST[external_int]";
+								$config['external_gateway'] = "$_POST[external_gateway]";
 								$config['external_subnet'] = "$_POST[external_subnet]";
+								$config['dnsforwarder1'] = "$_POST[dnsforwarder1]";
+								$config['dnsforwarder2'] = "$_POST[dnsforwarder2]";
 								file_put_contents('config.php',' <?php return ' . var_export($config, true) . ';');
 								# Everything is done at this point. Go Phase 3.
 								header("Location: first_run.php?page=4");

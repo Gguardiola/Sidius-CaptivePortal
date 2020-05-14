@@ -627,12 +627,15 @@ function print_logs($config, $data, $error) {
 if($_GET['menu'] == "logout"){
   session_destroy();
   unset($_SESSION['config']);
+  //INCLUDING THE IPTABLES CONCESSION REMOVER
+  $logout = true;
+  include "../cpanel/iptablesUserHandler.php";
   header("Location: ../index.php");
   die();
 
 }
 
-/////////// GENERAL SETTINGS HANDLER ///////////
+/////////// GENERAL SETTINGS: HANDLER ///////////
 
 if ($_GET['menu'] == 1) {
   $MAC = get_connected_devices();
@@ -690,18 +693,18 @@ if ($_GET['menu'] == 1) {
       }
     }
 
-  # Delete all client concessions WIP actually not working!!
-  ///////////////////////////////////////////////////////////
+  
+  //REMOVE ALL CONCESSIONS BUTTON
+  //this button will include the iptables.sh script commands that its gonna rewrite the iptables, erasing the current user concessions
   elseif ($_GET['form'] == 3) {
-    # reset concessions
 
-    $ipta = shell_exec("sudo ./iptables.sh");
+    include "removeConcessions.php";
 
-    print_general_settings($config, $error, $MAC, $users, $network, $sysinfo);
+    header("location: cpanel.php?menu=logout ");
     }
   }
 
-/////////// DATABASE MANAGEMENT HANDLER ///////////
+/////////// DATABASE MANAGEMENT: HANDLER ///////////
 
 if ($_GET['menu'] == 2) {
   if ($_GET['form'] == NULL) {
@@ -747,7 +750,7 @@ if ($_GET['menu'] == 2) {
     }
 }
 
-/////////// LOG HANDLER ///////////
+/////////// LOG: HANDLER ///////////
 if($_GET['menu'] == 3) {
 
   print_logs($config, $data, $error);
