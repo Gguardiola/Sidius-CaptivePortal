@@ -219,25 +219,40 @@
 								<div class="mdl-textfield mdl-js-textfield">
 									<input style="margin-bottom:9px" id="external_gateway" class="mdl-textfield__input" type="text" name="external_gateway">
 									<label class="mdl-textfield__label" for="external_gateway">Example: 10.110.0.1</label>
-								</div>	
-								<h6>Primary DNS forwarder</h6>
-								<div class="mdl-textfield mdl-js-textfield">
-									<input style="margin-bottom:9px" id="dnsforwarder1" class="mdl-textfield__input" type="text" value="8.8.8.8" name="dnsforwarder1">
-									<label class="mdl-textfield__label" for="dnsforwarder1">Example: 8.8.8.8</label>
 								</div>
-								<h6>Secondary DNS forwarder</h6>
-								<div class="mdl-textfield mdl-js-textfield">
-									<input style="margin-bottom:9px" id="dnsforwarder2" class="mdl-textfield__input" type="text" value="8.8.8.8" name="dnsforwarder2">
-									<label class="mdl-textfield__label" for="dnsforwarder2">Example: 8.8.4.4</label>
-								</div>						
-								<br>									
-								<button style="padding-left:46px;padding-right:46px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">CONTINUE</button>
-							</form>
+								');
+								$handle = fopen("setupTemplates/usingDNSfamilyFriendly", "r");
+								$response = fgets($handle);
+								fclose($handle);
+
+								if($response == "yes"){
+									print('<input type="hidden" value="208.67.222.123" name="dnsforwarder1">');
+									print('<input type="hidden" value="208.67.220.123" name="dnsforwarder1">');
+								}
+								else{
+
+									print('	
+									<h6>Primary DNS forwarder</h6>
+									<div class="mdl-textfield mdl-js-textfield">
+										<input style="margin-bottom:9px" id="dnsforwarder1" class="mdl-textfield__input" type="text" value="8.8.8.8" name="dnsforwarder1">
+										<label class="mdl-textfield__label" for="dnsforwarder1">Example: 8.8.8.8</label>
+									</div>
+									<h6>Secondary DNS forwarder</h6>
+									<div class="mdl-textfield mdl-js-textfield">
+										<input style="margin-bottom:9px" id="dnsforwarder2" class="mdl-textfield__input" type="text" value="8.8.8.8" name="dnsforwarder2">
+										<label class="mdl-textfield__label" for="dnsforwarder2">Example: 8.8.4.4</label>
+									</div> ');					
+								}
+
+								print('
+									<br>									
+									<button style="padding-left:46px;padding-right:46px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">CONTINUE</button>
+									</form>
 
 
-							</div>
-						</div>						
-						');
+										</div>
+									</div>						
+								');
 						
 					}
 

@@ -1,0 +1,4 @@
+zone "familyfriendly" IN {
+type master;
+file "/etc/bind/familyfriendly.db";
+};

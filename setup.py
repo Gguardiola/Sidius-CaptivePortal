@@ -136,6 +136,9 @@ def LAMP_setup():
     print(Style.RESET_ALL) 
     os.system("apt-get install apache2")
     os.system("cat setupTemplates/dir.conf > /etc/apache2/mods-enabled/dir.conf")
+    os.system("apt-get install libapache2-mod-evasive")
+    os.system("a2enmod ssl")
+    os.system("a2enmod rewrite")
     print("")
     print(Fore.BLUE + "Installing MySQL...")
     print(Style.RESET_ALL) 
@@ -325,15 +328,33 @@ def BIND_setup():
     os.system("cat setupTemplates/DNShandler > /etc/bind/named.conf.local")    
 
     #named.conf.options
-    ###WIP####
-    #ADD OPTIONAL PROXY DNS
-    f = open("setupTemplates/DNSforwarders","r")
-    forwarders = f.read()
-    f = open("setupTemplates/DNShandler","w")
-    f.write(forwarders)
-    f.close()   
+    while(True):
+        familyfriendly = input("Do you want to configure a family friendy filter? This will deny the access to adult sites or ilegal sites![y/n]: ")
+        familyfriendly = familyfriendly.lower()
+        if familyfriendly == "y":
+            os.system("cat setupTemplates/DNSfamilyFriendly > /etc/bind/familyfriendly.db")
+            os.system("cat setupTemplates/DNSfamilyFriendlyZone >> /etc/bind/named.conf.local")
+            os.system("cat setupTemplates/DNSfamilyFriendlyForwarders > /etc/bind/named.conf.options")
 
-    os.system("cat setupTemplates/DNShandler > /etc/bind/named.conf.options")
+            f = open("setupTemplates/usingDNSfamilyFriendly","w")
+            f.write("yes")
+            f.close()
+
+            break
+        elif familyfriendly == "n":
+            f = open("setupTemplates/DNSforwarders","r")
+            forwarders = f.read()
+            f = open("setupTemplates/DNShandler","w")
+            f.write(forwarders)
+            f.close()   
+
+            os.system("cat setupTemplates/DNShandler > /etc/bind/named.conf.options")            
+            print("")
+            print(Fore.BLUE + "Skipping...")
+            print(Style.RESET_ALL) 
+            return False
+
+
     print("")
     print(Fore.GREEN + "DNS DONE!")
     print(Style.RESET_ALL)
@@ -490,15 +511,25 @@ def firewall_setup():
         sshHOST = "127.0.0.1"
     sshHOST += "/32"
 
-    print("")
-    print("Primary DNS forwarder:")
-    print("Example: 8.8.8.8")
-    dnsforwarder1 = input("- ")         
+    f = open("setupTemplates/usingDNSfamilyFriendly","r")
+    response = f.read()
+    f.close()
 
-    print("")
-    print("Secondary DNS forwader:")
-    print("Example: 8.8.4.4")
-    dnsforwarder2 = input("- ")         
+    if response == "yes":
+        dnsforwarder1 = "208.67.222.123"              
+        dnsforwarder2 = "208.67.220.123"
+
+    else:
+
+        print("")
+        print("Primary DNS forwarder:")
+        print("Example: 8.8.8.8")
+        dnsforwarder1 = input("- ")         
+
+        print("")
+        print("Secondary DNS forwader:")
+        print("Example: 8.8.4.4")
+        dnsforwarder2 = input("- ")         
 
     print("")
     print(Fore.YELLOW + "THE DEFAULT PAYMENT GATEWAY IS REDSYS, IF YOU WANT TO CHANGE THIS, PLEASE CHECK DE DOCUMENTATION IN [LINK]")
