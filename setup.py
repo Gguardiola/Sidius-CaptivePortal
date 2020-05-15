@@ -464,8 +464,8 @@ def firewall_setup():
     f.write(iptablesconf)
     f.close()
 
-    os.system("cat setupTemplates/iptablesHandler > ../cpanel/firewall.sh")
-    os.system("chmod +x ../cpanel/firewall.sh")
+    os.system("cat setupTemplates/iptablesHandler > cpanel/firewall.sh")
+    os.system("chmod +x cpanel/firewall.sh")
     print("")
     print(Fore.GREEN + "FIREWALL DONE!")
     print(Style.RESET_ALL)
