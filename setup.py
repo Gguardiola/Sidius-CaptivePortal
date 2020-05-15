@@ -154,7 +154,7 @@ def LAMP_setup():
         continueChecker = continueChecker.lower()
         if continueChecker == "y":
             password = getpass.getpass(prompt='MySQL root password: ', stream=None) 
-            grantsql = subprocess.getoutput('mysql --user="root" --password="'+password+'" --execute="CREATE database proba"')
+            grantsql = subprocess.getoutput('mysql --user="root" --password="'+password+'" --execute="ALTER user "root"@"localhost" identified with mysql_native_password by "'+password+'";')
             if "Access denied" in grantsql:
                 print("")
                 print(Fore.RED + "PASSWORD INCORRECT")
