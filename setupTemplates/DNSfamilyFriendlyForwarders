@@ -26,6 +26,6 @@ options {
 	listen-on-v6 { none; };
 	recursion yes;
 	response-policy {
-		zone "bloqueo";
+		zone "familyfriendly";
 	};
 };

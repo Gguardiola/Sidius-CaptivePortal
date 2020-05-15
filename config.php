@@ -1,11 +1,11 @@
 <?php return array (
-  'captivename' => 'Aeroport del Prat Wi-Fi',
+  'captivename' => 'SIDIUS PROJECT',
   'loginphp_file' => 'login/login.php',
-  'db_name' => 'portalcautivo',
+  'db_name' => 'sidius',
   'db_server' => '127.0.0.1',
   'db_tableauth' => 'login',
   'db_username' => 'root',
-  'db_password' => 'Sintesis#123',
+  'db_password' => 'DarthSidius#66',
   'internal_int' => 'enp0s8',
   'internal_ip' => '10.222.0.1',
   'external_int' => 'enp0s3',
@@ -18,6 +18,6 @@
   'premium1_time' => '8hours',
   'admin_time' => '24hours',
   'admin_mail' => 'admin@admin.com',
-  'domain' => 'aeropuerto.webredirect.org',  
+  'domain' => 'jgtektest.webredirect.org',  
   'payment_gateway' => 'https://sis-t.redsys.es:25443/',
 );
