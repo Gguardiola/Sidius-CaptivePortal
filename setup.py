@@ -143,7 +143,8 @@ def LAMP_setup():
     print("")
     os.system("mysql_secure_installation")
     print("")
-    while(True):
+    ask = True
+    while(ask == True):
         print(Fore.YELLOW + "REMEMBER THAT YOU NEED ONE MYSQL USER TO BE ACCESIBLE FROM OUTSIDE! READ THE DOCUMENTATION IF YOU WANT TO CREATE A NEW USER WITH PRIVILEGES [LINK]")
         print(Style.RESET_ALL) 
         continueChecker = input("Do you want to make mysql root user accesible from outside?[y/n]: ")
@@ -161,12 +162,13 @@ def LAMP_setup():
                     print("")
                     print(Fore.BLUE + "Skipping...")
                     print(Style.RESET_ALL) 
-                    break
+                    ask = False
             else:
                 print("")
                 print(Fore.GREEN + "DONE!")
                 print(Style.RESET_ALL)
-                print("")              
+                print("")
+                ask = False              
         elif continueChecker == "n":
             print("")
             print(Fore.BLUE + "Skipping...")
