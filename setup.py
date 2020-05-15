@@ -359,7 +359,7 @@ def DHCP_setup():
     f.close()
 
 
-    os.system("cat setup/Templates/DHCPhandler > /etc/dhcp/dhcpd.conf")
+    os.system("cat setupTemplates/DHCPhandler > /etc/dhcp/dhcpd.conf")
 
 
     print("")
