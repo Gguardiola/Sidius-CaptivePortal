@@ -227,7 +227,7 @@
 
 								if($response == "yes"){
 									print('<input type="hidden" value="208.67.222.123" name="dnsforwarder1">');
-									print('<input type="hidden" value="208.67.220.123" name="dnsforwarder1">');
+									print('<input type="hidden" value="208.67.220.123" name="dnsforwarder2">');
 								}
 								else{
 

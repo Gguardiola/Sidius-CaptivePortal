@@ -555,17 +555,7 @@ def firewall_setup():
     print(Style.RESET_ALL)
     print("")   
 
-    while(True):
-        continueChecker = input("Do you want to run now the firewall?[y/n]: ")
-        continueChecker = continueChecker.lower()
-        if continueChecker == "y":
-            os.system("./cpanel/firewall.sh")
-            break
-        elif continueChecker == "n":
-            print("")
-            print(Fore.BLUE + "Skipping. You can manually run the firewall going to the /cpanel folder and executing ./firewall.sh.")
-            print(Style.RESET_ALL) 
-            return False
+
 
 def logs_setup():
     print("============================================================")
@@ -638,6 +628,17 @@ def permissions_setup():
     time.sleep(0.2)
 
 def goodbye():
+    while(True):
+        continueChecker = input("Do you want to run now the firewall?[y/n]: ")
+        continueChecker = continueChecker.lower()
+        if continueChecker == "y":
+            os.system("./cpanel/firewall.sh")
+            break
+        elif continueChecker == "n":
+            print("")
+            print(Fore.BLUE + "Skipping. You can manually run the firewall going to the /cpanel folder and executing ./firewall.sh.")
+            print(Style.RESET_ALL) 
+            return False
     print("")
     print(Fore.BLUE + "Restarting the services...")
     print(Style.RESET_ALL) 
