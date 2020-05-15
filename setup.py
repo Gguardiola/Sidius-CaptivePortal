@@ -486,6 +486,7 @@ def firewall_setup():
         continueChecker = input("Do you want to run now the firewall?[y/n]: ")
         continueChecker = continueChecker.lower()
         if continueChecker == "y":
+            os.system("./cpanel/firewall.sh")
             break
         elif continueChecker == "n":
             print("")
