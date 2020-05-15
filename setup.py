@@ -197,12 +197,12 @@ def BIND_setup():
 
         print("")
         print("Internal network interface IP Address:")
-        print("Example: 10.110.0.1")
+        print("Example: 192.168.1.1")
         internal_ip = input("- ")    
 
         print("")
         print("Internal network interface Subnet Mask:")
-        print("Example: /16")
+        print("Example: /24")
         print(Fore.YELLOW + "IF YOUR SUBNET MASK IS CLASSLESS INSTEAD OF CLASSFULL, LEAVE THE FIELD EMPTY AND CHECK THE DOCUMENTATION ON [LINK]")
         print(Style.RESET_ALL) 
         internal_subnetmask = input("- ")   
@@ -332,28 +332,28 @@ def DHCP_setup():
     print("")
     print("DHCP SUBNET")
     print("Internal network subnet IP address:")
-    print("Example: 10.110.0.0")
+    print("Example: 192.168.1.0")
     subnetIP = input("- ")    
 
     print("")
     print("Internal network subnet mask:")
-    print("Example: 255.255.0.0")
+    print("Example: 255.255.255.0")
     subnetMASKIP = input("- ")    
 
     print("")
     print("Internal network interface IP address:")
-    print("Example: 10.110.0.1")
+    print("Example: 192.168.1.1")
     gatewayIP = input("- ")        
 
     print("")
     print("DHCP RANGE")
     print("First IP address:")
-    print("Example: 10.110.0.20")
+    print("Example: 192.168.1.20")
     firstRangeIP = input("- ")        
 
     print("")
     print("Last IP address:")
-    print("Example: 10.110.0.254")
+    print("Example: 192.168.1.254")
     lastRangeIP = input("- ") 
 
     f = open("setupTemplates/DHCPrange","r")
@@ -385,12 +385,19 @@ def firewall_setup():
     print("")
     print(Fore.BLUE + "Giving Apache2 privileges to run iptables commands...")
     print(Style.RESET_ALL) 
-    sudoers = subprocess.getoutput("cat /etc/sudoers")
-    sudoers += "\nwww-data ALL=NOPASSWD: /sbin/iptables"
-    f = open("setupTemplates/sudoers","w")
-    f.write(sudoers)
-    f.close()
-    os.system("cat setupTemplates/sudoers > /etc/sudoers")
+    try:
+        sudoersCheck = open("setupTemplates/sudoers","r")
+        sudoersCheck.close()
+        sudoers = subprocess.getoutput("cat /etc/sudoers")
+        sudoers += "\nwww-data ALL=NOPASSWD: /sbin/iptables"
+        f = open("setupTemplates/sudoers","w")
+        f.write(sudoers)
+        f.close()
+        os.system("cat setupTemplates/sudoers > /etc/sudoers")
+    except FileNotFoundError:
+        print("")
+        print(Fore.BLUE + "Sudoers file already has been modified by this script. Skipping...")
+        print(Style.RESET_ALL)           
 
     print("")
     print(Fore.BLUE + "Setting up iptables rules...")
@@ -421,7 +428,7 @@ def firewall_setup():
 
     print("")
     print("Internal network interface IP address:")
-    print("Example: 10.110.0.1")
+    print("Example: 192.168.1.1")
     internalIP = input("- ")        
 
     while(True):
@@ -437,7 +444,7 @@ def firewall_setup():
             break    
 
     print("")
-    print("IP address of the single host that can connect via SSH :")
+    print("IP address of the single host that can connect via SSH:")
     print(Fore.YELLOW + "IF YOU DON'T WANT ANYONE TO CONNECT VIA SSH, LEAVE THE FIELD EMPTY")
     print(Style.RESET_ALL) 
     print("Example: 10.110.0.10")
