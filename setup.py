@@ -148,12 +148,14 @@ def LAMP_setup():
         continueChecker = input("Do you want to make root user accesible from outside?[y/n]: ")
         continueChecker = continueChecker.lower()
         if continueChecker == "y":
-            os.system('mysql --user="root" --execute="CREATE database proba"')
+            password = input("Root password: ")
+            os.system('mysql --user="root" --password="'+password+'" --execute="CREATE database proba"')
+            break
         elif continueChecker == "n":
             print("")
             print(Fore.BLUE + "Skipping...")
             print(Style.RESET_ALL) 
-            return False
+            break
 
     print(Fore.BLUE + "Installing PHP...")
     print(Style.RESET_ALL) 
