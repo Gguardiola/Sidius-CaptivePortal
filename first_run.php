@@ -198,17 +198,17 @@
 								<h6>Internal interface</h6>
 								<div class="mdl-textfield mdl-js-textfield">
 									<input style="margin-bottom:9px" id="internal_int" class="mdl-textfield__input" type="text" name="internal_int">
-									<label class="mdl-textfield__label" for="internal_int">Example: enp0s3</label>
+									<label class="mdl-textfield__label" for="internal_int">Example: enp0s8</label>
 								</div>
 								<h6>Internal interface IP address</h6>
 								<div class="mdl-textfield mdl-js-textfield">
 									<input style="margin-bottom:9px" id="internal_ip" class="mdl-textfield__input" type="text" name="internal_ip">
-									<label class="mdl-textfield__label" for="internal_ip">Example: 10.110.0.1</label>
+									<label class="mdl-textfield__label" for="internal_ip">Example: 192.168.1.1</label>
 								</div>	
 								<h6>WiFi External interface</h6>
 								<div class="mdl-textfield mdl-js-textfield">
 									<input style="margin-bottom:9px" id="external_int" class="mdl-textfield__input" type="text" name="external_int">
-									<label class="mdl-textfield__label" for="external_int">Example: eth0</label>
+									<label class="mdl-textfield__label" for="external_int">Example: enp0s3</label>
 								</div>	
 								<h6>External subnet</h6>
 								<div class="mdl-textfield mdl-js-textfield">
@@ -278,7 +278,7 @@
 								<h6>Captive portal domain name</h6>
 								<div class="mdl-textfield mdl-js-textfield">
 									<input style="margin-bottom:9px" id="domain" class="mdl-textfield__input" type="text"  name="domain">
-									<label class="mdl-textfield__label" for="domain" >Example: elpartairport.webredirect.org</label>
+									<label class="mdl-textfield__label" for="domain" >Example: elPratAirport.webredirect.org</label>
 								</div>								
 								<br>									
 								<button style="padding-left:46px;padding-right:46px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">CONTINUE</button>

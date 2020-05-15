@@ -27,6 +27,7 @@ def presentation():
     print("    ·   Internet connection")                  
     print("    ·   Two network interfaces")                  
     print("    ·   System updated and upgraded")   
+    print("    ·   Have a valid SSL certificate")  
     print("")               
     while(True):
         continueChecker = input("Continue?[y/n]: ")
@@ -141,6 +142,19 @@ def LAMP_setup():
     print("")
     os.system("mysql_secure_installation")
     print("")
+    while(True):
+        print(Fore.YELLOW + "REMEMBER THAT YOU NEED ONE USER TO BE ACCESIBLE FROM OUTSIDE! READ THE DOCUMENTATION IF YOU WANT TO CREATE A NEW USER WITH PRIVILEGES [LINK]")
+        print(Style.RESET_ALL) 
+        continueChecker = input("Do you want to make root user accesible from outside?[y/n]: ")
+        continueChecker = continueChecker.lower()
+        if continueChecker == "y":
+            os.system('mysql --user="root" --execute="CREATE database proba"')
+        elif continueChecker == "n":
+            print("")
+            print(Fore.BLUE + "Skipping...")
+            print(Style.RESET_ALL) 
+            return False
+
     print(Fore.BLUE + "Installing PHP...")
     print(Style.RESET_ALL) 
     os.system("apt-get install php libapache2-mod-php php-mysql php-cli")
@@ -201,11 +215,12 @@ def BIND_setup():
         internal_ip = input("- ")    
 
         print("")
-        print("Internal network interface Subnet Mask:")
-        print("Example: /24")
         print(Fore.YELLOW + "IF YOUR SUBNET MASK IS CLASSLESS INSTEAD OF CLASSFULL, LEAVE THE FIELD EMPTY AND CHECK THE DOCUMENTATION ON [LINK]")
         print(Style.RESET_ALL) 
+        print("Internal network interface Subnet Mask:")
+        print("Example: /24")
         internal_subnetmask = input("- ")   
+        print("")
 
         try:
             if "/" not in internal_subnetmask and len(internal_subnetmask) > 0:
