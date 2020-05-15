@@ -388,17 +388,18 @@ def firewall_setup():
     try:
         sudoersCheck = open("setupTemplates/sudoers","r")
         sudoersCheck.close()
+        print("")
+        print(Fore.BLUE + "Sudoers file already has been modified by this script. Skipping...")
+        print(Style.RESET_ALL)  
+
+    except FileNotFoundError: 
         sudoers = subprocess.getoutput("cat /etc/sudoers")
         sudoers += "\nwww-data ALL=NOPASSWD: /sbin/iptables"
         f = open("setupTemplates/sudoers","w")
         f.write(sudoers)
         f.close()
         os.system("cat setupTemplates/sudoers > /etc/sudoers")
-    except FileNotFoundError:
-        print("")
-        print(Fore.BLUE + "Sudoers file already has been modified by this script. Skipping...")
-        print(Style.RESET_ALL)           
-
+        
     print("")
     print(Fore.BLUE + "Setting up iptables rules...")
     print(Style.RESET_ALL)    
