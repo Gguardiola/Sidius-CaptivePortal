@@ -1,5 +1,6 @@
 import sys
 import os
+import getpass
 import time
 import subprocess
 import colorama
@@ -143,14 +144,29 @@ def LAMP_setup():
     os.system("mysql_secure_installation")
     print("")
     while(True):
-        print(Fore.YELLOW + "REMEMBER THAT YOU NEED ONE USER TO BE ACCESIBLE FROM OUTSIDE! READ THE DOCUMENTATION IF YOU WANT TO CREATE A NEW USER WITH PRIVILEGES [LINK]")
+        print(Fore.YELLOW + "REMEMBER THAT YOU NEED ONE MYSQL USER TO BE ACCESIBLE FROM OUTSIDE! READ THE DOCUMENTATION IF YOU WANT TO CREATE A NEW USER WITH PRIVILEGES [LINK]")
         print(Style.RESET_ALL) 
-        continueChecker = input("Do you want to make root user accesible from outside?[y/n]: ")
+        continueChecker = input("Do you want to make mysql root user accesible from outside?[y/n]: ")
         continueChecker = continueChecker.lower()
         if continueChecker == "y":
-            password = input("Root password: ")
-            os.system('mysql --user="root" --password="'+password+'" --execute="CREATE database proba"')
-            break
+            password = getpass.getpass(prompt='MySQL root password: ', stream=None) 
+            grantsql = subprocess.getoutput('mysql --user="root" --password="'+password+'" --execute="CREATE database proba"')
+            if "Access denied" in grantsql:
+                print("")
+                print(Fore.RED + "PASSWORD INCORRECT")
+                print(Style.RESET_ALL)              
+                again = input("Try again?[y/n]: ")  
+                again = again.lower()
+                if again == "n":
+                    print("")
+                    print(Fore.BLUE + "Skipping...")
+                    print(Style.RESET_ALL) 
+                    break
+            else:
+                print("")
+                print(Fore.GREEN + "DONE!")
+                print(Style.RESET_ALL)
+                print("")              
         elif continueChecker == "n":
             print("")
             print(Fore.BLUE + "Skipping...")
