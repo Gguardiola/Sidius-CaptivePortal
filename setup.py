@@ -394,12 +394,12 @@ def firewall_setup():
 
     except FileNotFoundError: 
         sudoers = subprocess.getoutput("cat /etc/sudoers")
-        sudoers += "\nwww-data ALL=NOPASSWD: /sbin/iptables"
+        sudoers += "\nwww-data ALL=NOPASSWD: /sbin/iptables\n"
         f = open("setupTemplates/sudoers","w")
         f.write(sudoers)
         f.close()
         os.system("cat setupTemplates/sudoers > /etc/sudoers")
-        
+
     print("")
     print(Fore.BLUE + "Setting up iptables rules...")
     print(Style.RESET_ALL)    
