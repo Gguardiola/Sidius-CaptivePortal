@@ -214,7 +214,18 @@ def BIND_setup():
                 print(Style.RESET_ALL)      
 
             else:
-                domain_reverse = internal_ip.split(".");domain_reverse = domain_reverse[1]+"."+domain_reverse[0]+".in-addr.arpa"
+                if internal_subnetmask == "/8":
+                    domain_reverse = internal_ip.split(".");domain_reverse = domain_reverse[0]+".in-addr.arpa"
+
+                elif internal_subnetmask == "/16":
+                    domain_reverse = internal_ip.split(".");domain_reverse = domain_reverse[1]+"."+domain_reverse[0]+".in-addr.arpa"
+                
+                elif internal_subnetmask == "/24":
+                    domain_reverse = internal_ip.split(".");domain_reverse = domain_reverse[2]+"."+domain_reverse[1]+"."+domain_reverse[0]+".in-addr.arpa"
+
+                else:
+                    domain_reverse = "reverse_classless"          
+
                 break
         except:
             print("")
