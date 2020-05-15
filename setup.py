@@ -5,22 +5,22 @@ import subprocess
 import colorama
 from colorama import Fore, Style
 def presentation():
-    print("")
+    print("       _______    ___     ______     ___     __   __    _______ ")
     time.sleep(0.1)
-    print("             __    _______ .___________. _______  __  ___ ")
+    print("      |       |  |   |   |      |   |   |   |  | |  |  |       |")
     time.sleep(0.1)
-    print("            |  |  /  _____||           ||   ____||  |/  / ")
+    print("      |  _____|  |   |   |  _    |  |   |   |  | |  |  |  _____|")
     time.sleep(0.1)
-    print("            |  | |  |  __  `---|  |----`|  |__   |  '  /  ")
+    print("      | |_____   |   |   | | |   |  |   |   |  |_|  |  | |_____ ")
     time.sleep(0.1)
-    print("      .--.  |  | |  | |_ |     |  |     |   __|  |    <   ")
+    print("      |_____  |  |   |   | |_|   |  |   |   |       |  |_____  |")
     time.sleep(0.1)
-    print("      |  `--'  | |  |__| |     |  |     |  |____ |  .  \  ")
+    print("       _____| |  |   |   |       |  |   |   |       |   _____| |")
     time.sleep(0.1)
-    print("       \______/   \______|     |__|     |_______||__|\__\ ")
-    time.sleep(0.1)
+    print("      |_______|  |___|   |______|   |___|   |_______|  |_______|")
+
     print("")                                                
-    print("                   Captive portal SETUP v3.3")
+    print("           SIDIUS PROJECT - JGTEK Captive portal SETUP v3.2")
     print("")
     print("Please verify that you comply with the following points before continuing.")   
     print("")  
@@ -236,7 +236,7 @@ def BIND_setup():
     f.write(direct)
     f.close()
 
-    os.system("cat setup/Templates/DNShandler > /etc/bind/direct.db")
+    os.system("cat setupTemplates/DNShandler > /etc/bind/direct.db")
 
     #REVERSE ZONE
     internal_ip = internal_ip.split(".")
@@ -264,7 +264,7 @@ def BIND_setup():
     f.write(reverse)
     f.close()
 
-    os.system("cat setup/Templates/DNShandler > /etc/bind/reverse.db")
+    os.system("cat setupTemplates/DNShandler > /etc/bind/reverse.db")
 
     #named.conf.local
     f = open("setupTemplates/DNSzones","r")
@@ -276,7 +276,7 @@ def BIND_setup():
     f.write(conflocal)
     f.close()   
 
-    os.system("cat setup/Templates/DNShandler > /etc/bind/named.conf.local")    
+    os.system("cat setupTemplates/DNShandler > /etc/bind/named.conf.local")    
 
     #named.conf.options
     ###WIP####
@@ -287,7 +287,7 @@ def BIND_setup():
     f.write(forwarders)
     f.close()   
 
-    os.system("cat setup/Templates/DNShandler > /etc/bind/named.conf.options")
+    os.system("cat setupTemplates/DNShandler > /etc/bind/named.conf.options")
     print("")
     print(Fore.GREEN + "DNS DONE!")
     print(Style.RESET_ALL)
