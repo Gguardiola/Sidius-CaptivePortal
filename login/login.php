@@ -138,6 +138,17 @@
         </div>
 
     </div>
+    <footer class="mdl-mega-footer">
+ 
+      <div class="mdl-mega-footer__bottom-section">
+        <div class="mdl-logo"><?php print($config['captivename']); ?> - Made by JGTek (SIDIUS Captive Portal PROJECT)</div>
+        <ul class="mdl-mega-footer__link-list">
+          <li><a href="/licenses.php">Licenses</a></li>
+          <li><a href="/privacy.php">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </footer>    
     <script src="../static/material.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

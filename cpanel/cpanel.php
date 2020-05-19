@@ -1,3 +1,4 @@
+
 <?php
 
 //if there is not GET variable, redirect user to menu 1
