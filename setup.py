@@ -598,6 +598,14 @@ def permissions_setup():
     time.sleep(0.2)
 
 def goodbye():
+
+    print("")
+    print(Fore.BLUE + "Restarting the services...")
+    print(Style.RESET_ALL) 
+    os.system("service apache2 restart")
+    os.system("service bind9 restart")
+    os.system("service isc-dhcp-server restart")    
+    print("")
     while(True):
         continueChecker = input("Do you want to run now the firewall?[y/n]: ")
         continueChecker = continueChecker.lower()
@@ -608,14 +616,7 @@ def goodbye():
             print("")
             print(Fore.BLUE + "Skipping. You can manually run the firewall going to the /cpanel folder and executing ./firewall.sh.")
             print(Style.RESET_ALL) 
-            return False
-    print("")
-    print(Fore.BLUE + "Restarting the services...")
-    print(Style.RESET_ALL) 
-    os.system("service apache2 restart")
-    os.system("service bind9 restart")
-    os.system("service isc-dhcp-server restart")    
-    print("")
+            return False    
     print(Fore.GREEN + "CONGRATULATIONS! EVERYTHING IS DONE.")
     print("PLEASE, OPEN A BROWSER AND GO TO yourdomain.org/first_run.php TO FINISH THE INSTALLATION.")
     print(Style.RESET_ALL)       
