@@ -141,7 +141,7 @@
     <footer class="mdl-mega-footer">
  
       <div class="mdl-mega-footer__bottom-section">
-        <div class="mdl-logo"><?php print($config['captivename']); ?> - Made by JGTek (SIDIUS Captive Portal PROJECT)</div>
+        <div class="mdl-logo"><?php print($config['captivename']); ?> - Made by JGTek (SIDIUS PROJECT)</div>
         <ul class="mdl-mega-footer__link-list">
           <li><a href="/licenses.php">Licenses</a></li>
           <li><a href="/privacy.php">Privacy Policy</a></li>
