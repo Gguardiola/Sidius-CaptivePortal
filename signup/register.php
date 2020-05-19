@@ -273,7 +273,7 @@
                             <input  value ="agree" type="checkbox" name="contract" id="contract" class="mdl-checkbox__input">
                             <span class="mdl-checkbox__label"></span>
                           </label>                          
-                          <small style ="display:inline" id="contractInfo" class="form-text text-muted">I confirm that i have read, consent and agree with the <a target="_blank" href="/privacy.php">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a>.</small><br><br>
+                          <small style ="display:inline" id="contractInfo" class="form-text text-muted">I confirm that i have read, consent and agree with the <a target="_blank" href="/privacy.php">Privacy Policy</a>.</small><br><br>
           
                           <button style="margin-left:24%" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">CREATE ACCOUNT</button>
                       </form>
