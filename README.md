@@ -42,7 +42,7 @@ If you want to have it installed quickly and ready to work.
 ## Contributors 
 <!-- ALL-CONTRIBUTORS-LIST:START -->
 <!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
+<!-- markdownlint-disabled -->
 <table>
   <tr>
     <td align="center"><a href="https://github.com/Gguardiola"><img src="https://avatars3.githubusercontent.com/u/51827577?s=460&u=f58449f01ad1c9a411014ff9bb51ba196080d2af&v=4" width="100px;" alt=""/><br /><sub><b>Gguardiola</b></sub></a><br /></td>
