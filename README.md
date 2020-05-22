@@ -44,7 +44,7 @@ If you want to have it installed quickly and ready to work.
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/Gguardiola"><img src="https://avatars2.githubusercontent.com/u/51827577?s=460&v=4" width="100px;" alt=""/><br /><sub><b>Gguardiola</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/Gguardiola"><img src="https://avatars3.githubusercontent.com/u/51827577?s=460&u=f58449f01ad1c9a411014ff9bb51ba196080d2af&v=4" width="100px;" alt=""/><br /><sub><b>Gguardiola</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/Jonirulah"><img src="https://avatars2.githubusercontent.com/u/25936173?s=460&u=1dd6479994709e2dbfd946e51279657d7cf40ed4&v=4" width="100px;" alt=""/><br /><sub><b>Jonirulah</b></sub></a><br /></td>
   </tr>
  
