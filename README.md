@@ -6,10 +6,6 @@
 
 SIDIUS PROJECT is a captive portal made with the objective to have an easy installation and configuration on any Linux machine. It is aimed to public commerces and premises that have a considerable amount of people at day, e.g.: Airports, Hotel lobbies...
 
-<img src="https://avatars3.githubusercontent.com/u/51827577?s=460&u=f58449f01ad1c9a411014ff9bb51ba196080d2af&v=4" width="200px;" alt="JGTek Logo">
-
-
-
 ## Requirements
 
   - Updated Linux machine (Ubuntu Server recommended!)
@@ -58,6 +54,9 @@ If you want to have it installed quickly and ready to work.
  ## License
 
  This project is licensed under the [MIT license](LICENSE).
+ 
+<img src="https://avatars3.githubusercontent.com/u/51827577?s=460&u=f58449f01ad1c9a411014ff9bb51ba196080d2af&v=4" width="200px;" alt="JGTek Logo">
+
  
  ## Third party licenses
  
