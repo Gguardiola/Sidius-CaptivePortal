@@ -24,6 +24,10 @@ If you want to have it installed quickly and ready to work.
  - [Setup script]()
  
  
+ ## How it works?
+ 
+ WIP
+ 
  ## Common issues
  
  Obiously, the <strong>SIDIUS PROJECT</strong> captive portal isn't perfect. It may possible that you have some troubles on the process.
