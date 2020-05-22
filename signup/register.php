@@ -163,7 +163,7 @@
                       <h4>Page 2/3 - Select your plan</h4>
                       <br>
 
-                      <div style="margin-left: -4%;-webkit-box-shadow: inset -4px -2px 25px -2px rgba(0,0,0,0.41);-moz-box-shadow: inset -4px -2px 25px -2px rgba(0,0,0,0.41);box-shadow: inset -4px -2px 25px -2px rgba(0,0,0,0.41);width: 317px;height: 490px;overflow-x: scroll;overflow-y:hidden">
+                      <div style="width:auto;-webkit-box-shadow: inset -4px -2px 25px -2px rgba(0,0,0,0.41);-moz-box-shadow: inset -4px -2px 25px -2px rgba(0,0,0,0.41);box-shadow: inset -4px -2px 25px -2px rgba(0,0,0,0.41);height: 490px;overflow-x: scroll;overflow-y:hidden;border-top: 2px solid #494bb2;border-bottom: 2px solid #494bb2;border-left:2px solid #d4d4d4;border-right:2px solid #d4d4d4">
                       <div style="margin-top:10px;width:925px;">
                         <div style="display:inline-block;width:300px;height: 476px;padding:5%"class="card">
                             <div align=center>

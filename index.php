@@ -7,110 +7,103 @@ $config = include "config.php";
 
 //this function will write into the log file if the login attempt was successful or not. also will store the browser and SO client info (user agent)
 function loggerAUTH($status,$mac,$userinfo){
-  
+
   $userinfo = strtolower($userinfo);
   $now = date("Y-m-d H:i:s");
 
   while(true){
    if(strpos($userinfo, 'linux')){
     $so = "Linux";
-    break;
+
    }
-   elseif(strpos($userinfo, 'windows nt 10')){
+   if(strpos($userinfo, 'windows nt 10')){
     $so = "Windows 10";
-    break;
+
    }
-   elseif(strpos($userinfo, 'windows nt 6.3')){
+   if(strpos($userinfo, 'windows nt 6.3')){
     $so = "Windows 8.1";
-    break;
+
    }
-   elseif(strpos($userinfo, 'windows nt 6.2')){
+   if(strpos($userinfo, 'windows nt 6.2')){
     $so = "Windows 8";
-    break;
+
    }
-   elseif(strpos($userinfo, 'windows nt 6.1')){
+   if(strpos($userinfo, 'windows nt 6.1')){
     $so = "Windows 7";
-    break;
+
    }
-   elseif(strpos($userinfo, 'windows nt 6.0')){
+   if(strpos($userinfo, 'windows nt 6.0')){
     $so = "Windows Vista";
-    break;
+
    }
-   elseif(strpos($userinfo, 'windows nt 5.1') or strpos($userinfo, 'windows xp')){
+   if(strpos($userinfo, 'windows nt 5.1') or strpos($userinfo, 'windows xp')){
     $so = "Windows XP";
-    break;
+
    }
-   elseif(strpos($userinfo, 'iphone')){
+   if(strpos($userinfo, 'iphone')){
     $so = "iPhone";
-    break;
+
    }
-   elseif(strpos($userinfo, 'ipad')){
+   if(strpos($userinfo, 'ipad')){
     $so = "iPad";
-    break;
+
    }
-   elseif(strpos($userinfo, 'android')){
+   if(strpos($userinfo, 'android')){
     $so = "Android";
-    break;
+
    }
-   elseif(strpos($userinfo, 'blackberry')){
+   if(strpos($userinfo, 'blackberry')){
     $so = "Blackberry";
-    break;
+
    }
-   elseif(strpos($userinfo, 'macintosh|mac os x')){
+   if(strpos($userinfo, 'macintosh|mac os x')){
     $so = "Mac OS X";
-    break;
+
    }
-   elseif(strpos($userinfo, 'mac_powerpc')){
+   if(strpos($userinfo, 'mac_powerpc')){
     $so = "Mac OS 9";
-    break;
+
    }
-   elseif(strpos($userinfo, 'webos')){
+   if(strpos($userinfo, 'webos')){
     $so = "WebOS";
-    break;
-   }
-   else{
-    $so = "Unknown";
-    break;  
 
    }
 
+   break;
   }
 
   while(true){
     if(strpos($userinfo, 'firefox')){
      $browser = "Firefox";
-     break;
+
     }
-    elseif(strpos($userinfo, 'msie')){
+    if(strpos($userinfo, 'msie')){
       $browser = "Internet Explorer";
-      break;
+
     }
-    elseif(strpos($userinfo, 'safari')){
+    if(strpos($userinfo, 'safari')){
       $browser = "Safari";
-      break;
+
     }
-    elseif(strpos($userinfo, 'chrome')){
+    if(strpos($userinfo, 'chrome')){
       $browser = "Chrome";
-      break;
+
     }
-    elseif(strpos($userinfo, 'edge')){
+    if(strpos($userinfo, 'edge')){
       $browser = "Edge";
-      break;
+
     }
-    elseif(strpos($userinfo, 'opera')){
+    if(strpos($userinfo, 'opera')){
       $browser = "Opera";
-      break;
+
     }
-    elseif(strpos($userinfo, 'mobile')){
+    if(strpos($userinfo, 'mobile')){
       $browser = "Mobile Browser";
-      break;
-    }
-    else{
-      $browser = "Unknown";
-      break;
+
     }
 
- 
+    break;
+
    }
 
   $logline = $status . " | " . $now . " | " . "MAC: " . $mac . " | " . "BROWSER: " . $browser . " | " . "SO: " . $so;
@@ -156,12 +149,12 @@ if (isset($_POST['email']) and isset($_POST['password']) and $_POST['email'] != 
     if ($data[0]) {
       if($data[3] == "UNPAID"){
         $error = "<p align=center class='alert alert-danger'> The payment status of your ".$data[2]." account is UNPAID. Please change it to FREE or pay your plan clicking the ACCOUNT SETTINGS button. YOU HAVE 7 DAYS COUNTING FROM ".$data[4]." TO RENEW!. If you think this is a problem contact with the captive portal administrator <strong>".$config['admin_mail']."</strong></p>";
-        
+
 
         session_set_cookie_params(1800);
         session_start();
         $_SESSION['user'] = [$email,$data[2]];
-        
+
         include $config['loginphp_file'];
       }
       else{

@@ -368,7 +368,14 @@ def DHCP_setup():
     print("")
     print("Internal network interface IP address:")
     print("Example: 192.168.1.1")
-    gatewayIP = input("- ")        
+    gatewayIP = input("- ")       
+
+    
+    print("")
+    print("Internal network interface name:")
+    print("Example: enp0s8")
+    internalINT = input("- ")    
+
 
     print("")
     print("DHCP RANGE")
@@ -397,6 +404,16 @@ def DHCP_setup():
 
     os.system("cat setupTemplates/DHCPhandler > /etc/dhcp/dhcpd.conf")
 
+    f = open("setupTemplates/defaultISC","r")
+    dhcpfile = f.read()
+    dhcpfile = dhcpfile.replace("sample",internalINT)
+
+    f.close()
+    f = open("setupTemplates/DHCPhandler","w")
+    f.write(dhcpfile)
+    f.close()
+
+    os.system("cat setupTemplates/DHCPhandler > /etc/default/isc-dhcp-server")
 
     print("")
     print(Fore.GREEN + "DHCP DONE!")

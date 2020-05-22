@@ -71,7 +71,7 @@ function get_network_usage($config) {
 function get_system_info() {
   $sysinfo['used_ram'] = exec("free -m | tr -s '' ' ' | head -n2 | tail -n1 | cut -d ' ' -f3");
   $sysinfo['total_ram'] = exec("free -m | tr -s '' ' ' | head -n2 | tail -n1 | cut -d ' ' -f2");
-  $sysinfo['cpu_usage'] = exec("top -bn2 -d 0.15 | grep '^%Cpu' | tail -n1 | gawk '{print $2+$4+$6}'");
+  $sysinfo['cpu_usage'] = exec("grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage ''}'");
   $sysinfo['total_disk'] = exec("df -h | grep /$ | tr -s '' ' ' | cut -d ' ' -f2");
   $sysinfo['free_disk'] = exec("df -h | grep /$ | tr -s '' ' ' | cut -d ' ' -f3");
   return $sysinfo;
@@ -83,9 +83,9 @@ function get_system_info() {
 
 
 function print_general_settings($config, $error, $devices, $users, $network, $sysinfo) {
-  
-                  /////////// DATABASE SETTINGS ///////////  
-  
+
+                  /////////// DATABASE SETTINGS ///////////
+
   print('
 
 
@@ -121,13 +121,13 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
           <td class="mdl-data-table__cell--non-numeric"><strong>Database auth table</strong></td>
           <td>' . $config['db_tableauth'] .'</td>
         </tr>
-                               
+
       </tbody>
-      </table>  
-      <br> 
+      </table>
+      <br>
       <div valign="bottom">
         <hr class="cardContent">
-        <p class="cardContent alert-info"><strong>INFO:</strong> If you need to edit the configuration of the database parameters please open config.php, if you need to reset the captive portal please use first_run.php</p>    
+        <p class="cardContent alert-info"><strong>INFO:</strong> If you need to edit the configuration of the database parameters please open config.php, if you need to reset the captive portal please use first_run.php</p>
         <hr class="cardContent">
       </div>
     </div>
@@ -137,7 +137,7 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
   <!-- /////////// FIREWALL SETTINGS /////////// -->
 
 
- 
+
   <div class="cardContainer mdl-shadow--2dp mdl-cell mdl-cell--8-col">
 
     <form method="POST" action="cpanel.php?menu=1&form=1">
@@ -153,7 +153,7 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
           <div class="cardContent mdl-textfield mdl-js-textfield">
             <input id="internal_int" class="mdl-textfield__input" type="text" name="internal_int">
             <label class="mdl-textfield__label" for="internal_int">' . $config['internal_int'] .'</label>
-          </div>  
+          </div>
         </td>
       </tr>
       <tr>
@@ -162,7 +162,7 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
           <div class="cardContent mdl-textfield mdl-js-textfield">
             <input id="external_int" class="mdl-textfield__input" type="text" name="external_int">
             <label class="mdl-textfield__label" for="external_int">' . $config['external_int'] .'</label>
-          </div>  
+          </div>
         </td>
       </tr>
       <tr>
@@ -171,12 +171,12 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
           <div class="cardContent mdl-textfield mdl-js-textfield">
             <input id="external_subnet" class="mdl-textfield__input" type="text" name="external_subnet">
             <label class="mdl-textfield__label" for="external_subnet">' . $config['external_subnet'] .'</label>
-          </div>  
-        </td>        
+          </div>
+        </td>
       </tr>
-                             
+
     </tbody>
-    </table>     
+    </table>
       <br>
       ');
       if(isset($error['form1'])){
@@ -227,7 +227,7 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
             <div class="cardContent mdl-textfield mdl-js-textfield">
               <input id="free_time" class="mdl-textfield__input" type="text" name="free_time">
               <label class="mdl-textfield__label" for="free_time">' . $config['free_time'] .'</label>
-            </div>  
+            </div>
           </td>
         </tr>
         <tr>
@@ -236,7 +236,7 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
             <div class="cardContent mdl-textfield mdl-js-textfield">
               <input id="premium_time" class="mdl-textfield__input" type="text" name="premium_time">
               <label class="mdl-textfield__label" for="premium_time">' . $config['premium_time'] .'</label>
-            </div>  
+            </div>
           </td>
         </tr>
         <tr>
@@ -245,19 +245,19 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
             <div class="cardContent mdl-textfield mdl-js-textfield">
               <input id="premium1_time" class="mdl-textfield__input" type="text" name="premium1_time">
               <label class="mdl-textfield__label" for="premium1_time">' . $config['premium1_time'] .'</label>
-            </div>  
+            </div>
           </td>
-        </tr>        
+        </tr>
         <tr>
           <td class="mdl-data-table__cell--non-numeric"><strong>Admin Concession Time</strong></td>
           <td>
             <div class="cardContent mdl-textfield mdl-js-textfield">
               <input id="admin_time" class="mdl-textfield__input" type="text" name="admin_time">
               <label class="mdl-textfield__label" for="admin_time">' . $config['admin_time'] .'</label>
-            </div>  
-          </td>        
+            </div>
+          </td>
         </tr>
-                              
+
       </tbody>
       </table>
 
@@ -268,15 +268,15 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
 
 
       }
-      print('    
-      <br> 
+      print('
+      <br>
       <div>
         <hr class="cardContent">
         <div align=center>
           <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">Apply Changes</button>
-        </div>    
+        </div>
         </form>
-        
+
         <hr class="cardContent">
         </div>
       </div>
@@ -293,7 +293,7 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
 
 
 
-  <div style="width:1550px;margin-right:45px;" class=" mdl-shadow--2dp mdl-cell mdl-cell--12-col">        
+  <div style="width:1550px;margin-right:45px;" class=" mdl-shadow--2dp mdl-cell mdl-cell--12-col">
     <div class="cardTitle">
         <h4 class="cardh4">System Status</h4>
     </div>
@@ -321,11 +321,11 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
           <td>' . $users['admin'] .'</td>
         </tr>
 
-                              
+
       </tbody>
-      </table>      
+      </table>
     </div>
-    
+
 
     <div style="display:inline-block" class="cardBody mdl-cell mdl-cell--8-col">
       <table class="cardContent mdl-data-table mdl-js-data-table ">
@@ -354,14 +354,14 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
           <td class="mdl-data-table__cell--non-numeric"><strong>Disk Usage</strong></td>
           <td>' . $sysinfo['free_disk'] . "B | " . $sysinfo['total_disk'] . 'B</td>
         </tr>
-            
 
-                              
+
+
       </tbody>
-      </table>  
-      </div>      
+      </table>
+      </div>
       <div style="margin-left:55px;margin-top:60px;display:inline-block;vertical-align:top;">
-        <img style="max-width: 100%;max-height: 100%" src="../login/images/logo.png">	
+        <img style="max-width: 100%;max-height: 100%" src="../login/images/logo.png">
       </div>
       ');
       if(isset($error['database'])){
@@ -369,7 +369,7 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
 
 
       }
-      print(' 
+      print('
 
     </div>
   </div>
@@ -386,7 +386,7 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
 function print_db($config, $data, $error) {
   # Print first sector
   print('
-  <div style="width:1550px;margin-right:45px;" class=" mdl-shadow--2dp mdl-cell mdl-cell--12-col">        
+  <div style="width:1550px;margin-right:45px;" class=" mdl-shadow--2dp mdl-cell mdl-cell--12-col">
     <div class="cardTitle">
         <h4 class="cardh4">Database Management</h4>
     </div>
@@ -413,10 +413,10 @@ function print_db($config, $data, $error) {
         <div style="vertical-align:center;" class="mdl-textfield mdl-js-textfield">
           <input id="search" class="mdl-textfield__input" type="text" name="search">
           <label class="mdl-textfield__label" for="search">Search...</label>
-        </div>  
+        </div>
 
         <button style="margin-left:30px;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">SEARCH</button>
-      </form>     
+      </form>
    </div>
     <div style="display:inline-block;margin:30px;" class="mdl-cell mdl-cell--8-col">
       <table style="margin-left:7px;width:100%;" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -431,14 +431,14 @@ function print_db($config, $data, $error) {
             <th >Role</th>
             <th></th>
             <th >Last Login</th>
-            
+
             <th>Creation Date</th>
-            <th>Payment Status</th>   
+            <th>Payment Status</th>
           </tr>
         </thead>
       </table>
-      
-      <div style="width:100%;height:448px;overflow-y: scroll;overflow-x:hidden" class="mdl-cell mdl-cell--8-col">
+
+      <div style="width:100%;height:448px;overflow-y: scroll;overflow-x:scroll" class="mdl-cell mdl-cell--8-col">
         <table  style="width:100%; " class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
 
           <tbody >
@@ -451,9 +451,9 @@ function print_db($config, $data, $error) {
             }
         print('
           </tbody>
-        </table>    
+        </table>
      </div>
-     
+
     </div>
 
 
@@ -470,7 +470,7 @@ function print_db($config, $data, $error) {
       <hr>
       <div align=center>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">EXPORT DATABASE</button>
-      </div> 
+      </div>
       <hr>
 
     </form>
@@ -479,39 +479,48 @@ function print_db($config, $data, $error) {
           <div style="vertical-align:center;" class="mdl-textfield mdl-js-textfield">
           <input id="delete" class="mdl-textfield__input" type="text" name="delete">
           <label class="mdl-textfield__label" for="delete">Example: 1234567890-S</label>
-        </div>  
+        </div>
         <hr>
         ');
         if(isset($error)){
           print('<p align=center style="margin-left:60px;width:200px" class=" alert-info">' . $error . '</p>');
-  
-  
+
+
         }
-        print('   
+        print('
         <div align=center>
           <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">DELETE</button>
-        </div>  
+        </div>
         <hr>
 
-        </form>
- 
+        </form> 
+
         </div>
-    </div>
-  </div>
+        </div>
+      </div>
+      </div>
+      </main>
+      <script src="../static/material.min.js"></script>
+      </body>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      </html>
+
 
 	 ');
 
 }
 
                   ////////////////////////////////////
-                  ///////////THIRD PAGE: LOGS ////////   
+                  ///////////THIRD PAGE: LOGS ////////
                   ////////////////////////////////////
 
 
 function print_logs($config, $data, $error) {
 
   print('
-  <div style="width:1300px;margin-right:45px;" class=" mdl-shadow--2dp mdl-cell mdl-cell--12-col">        
+  <div style="width:1300px;margin-right:45px;" class=" mdl-shadow--2dp mdl-cell mdl-cell--12-col">
     <div class="cardTitle">
         <h4 class="cardh4">Logs</h4>
     </div>
@@ -538,14 +547,14 @@ function print_logs($config, $data, $error) {
             fclose($logfile);
           print('
           </tbody>
-        </table>    
+        </table>
      </div>
      <div style="width:100%" class="mdl-cell mdl-cell--8-col">
      <form method="POST" action="cpanel.php?menu=3">
        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">Update</button>
-     </form>     
+     </form>
      </div>
-     
+
     </div>
   </div>
 
@@ -591,8 +600,8 @@ function print_logs($config, $data, $error) {
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
-          
-          
+
+
 
         </div>
       </header>
@@ -600,11 +609,11 @@ function print_logs($config, $data, $error) {
         <header class="demo-drawer-header">
           <div style="display:inline-block"><img src="images/wrench.png" class="demo-avatar">
           <p style="margin-left:20px;display:inline-block">Administrator</p>
-          <form method ="POST" action ="cpanel.php?menu=logout">                  
+          <form method ="POST" action ="cpanel.php?menu=logout">
               <div style="margin-top:20px" align=center>
                 <button style="padding-left:40px;padding-right:40px" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">Log out</button>
               </div>
-              </form>    
+              </form>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
           <a class="mdl-navigation__link" href="cpanel.php?menu=1"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>General Settings</a>
@@ -618,7 +627,7 @@ function print_logs($config, $data, $error) {
       <body>
       <main class="mdl-layout__content mdl-color--grey-100">
       <div class="mdl-grid">
-      
+
 <?php
 
 
@@ -687,14 +696,14 @@ if ($_GET['menu'] == 1) {
     elseif ($_POST['free_time'] != "" or $_POST['premium_time'] != "" or $_POST['premium1_time'] != "" or $_POST['admin_time'] != "") {
       $config['free_time'] = "$_POST[free_time]";
       $config['premium_time'] = "$_POST[premium_time]";
-      $config['premium1_time'] = "$_POST[premium1_time]";      
+      $config['premium1_time'] = "$_POST[premium1_time]";
       $config['admin_time'] = "$_POST[admin_time]";
       file_put_contents('config.php',' <?php return ' . var_export($config, true) . ';');
       print_general_settings($config, $error, $MAC, $users, $network, $sysinfo);
       }
     }
 
-  
+
   //REMOVE ALL CONCESSIONS BUTTON
   //this button will include the iptables.sh script commands that its gonna rewrite the iptables, erasing the current user concessions
   elseif ($_GET['form'] == 3) {
@@ -757,14 +766,12 @@ if($_GET['menu'] == 3) {
   print_logs($config, $data, $error);
 
 }
-?>  
+?>
         </div>
       </main>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </body>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>  
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </html>
-
-

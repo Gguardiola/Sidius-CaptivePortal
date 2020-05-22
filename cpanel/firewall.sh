@@ -1,3 +1,4 @@
+#!/bin/sh
 # IPTables Script
 # Adjust those values right otherwise you will get locked out!
 EXTERNAL=enp0s3
