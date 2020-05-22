@@ -55,7 +55,7 @@ If you want to have it installed quickly and ready to work.
 
  This project is licensed under the [MIT license](LICENSE).
  
-<img src="https://avatars3.githubusercontent.com/u/51827577?s=460&u=f58449f01ad1c9a411014ff9bb51ba196080d2af&v=4" width="200px;" alt="JGTek Logo">
+<img src="https://i.imgur.com/T9C9bPc.png" width="200px;" alt="JGTek Logo">
 
  
  ## Third party licenses
