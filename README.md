@@ -27,7 +27,7 @@ If you want to have it installed quickly and ready to work.
  
  ## How it works?
  
- WIP
+ WIP add demo images
  
  ## Common issues
  
