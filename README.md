@@ -12,22 +12,50 @@ SIDIUS PROJECT is a captive portal made with the objective to have an easy insta
   - Two network interfaces
   - Non self-signed SSL certificate (without this, the browser will detect the captive portal as MITM. You can use Let's Encrypt for free)
   
+  Check these requirements with more details [here](https://github.com/Gguardiola/Sidius-CaptivePortal/wiki/1.-Requirements).
 ## Installation
 
 There are <strong>TWO</strong> options to install the captive portal.
 
  If you want to modify some specific option, value or simply you want to know how it works. (WARNING! it can be a bit boring...)
  
- - [Manual]()
+ - [Manual](https://github.com/Gguardiola/Sidius-CaptivePortal/wiki/3.-Manual-installation)
     
 If you want to have it installed quickly and ready to work.    
 
- - [Setup script]()
+ - [Setup script](https://github.com/Gguardiola/Sidius-CaptivePortal/wiki/2.-Setup-script-installation)
  
+ ## Demostration
  
- ## How it works?
+ <strong>INFO: </strong> Captive portal design may change in the future and make these images obsolete.
  
- WIP add demo images
+ Login page
+ 
+ <img src="https://i.imgur.com/T4cT0Tm.png" width="700px">
+ 
+ Account settings
+ 
+ <img src="https://i.imgur.com/Mahy471.png" width="700px">
+ 
+ Sign Up page
+ 
+ <img src="https://i.imgur.com/EPXI5ty.png" width="700px">
+ 
+ Plan selection
+ 
+ <img src="https://i.imgur.com/EhoOzAA.png" width="700px">
+ 
+ Cpanel - General Settings
+ 
+ <img src="https://i.imgur.com/oQaInEB.png" width="900px">
+ 
+ Cpanel - Database management
+ 
+ <img src="https://i.imgur.com/kdeg0o4.png" width="900px">
+ 
+ Cpanel - Logs
+ 
+ <img src="https://i.imgur.com/kelImnw.png" width="900px">
  
  ## Common issues
  
@@ -35,7 +63,7 @@ If you want to have it installed quickly and ready to work.
  
  If for some reason do you have issues, you can visit our Wiki here on GitHub and search the issue to prevent wasting time searching on internet (probably on StackOverflow)
  
-  - [Common issues]()
+  - [Common issues](https://github.com/Gguardiola/Sidius-CaptivePortal/wiki/4.-Common-issues)
   
  <strong>Please, if you find an issue that isn't in the Wiki section above, consider search in the [issues](https://github.com/Gguardiola/Sidius-CaptivePortal/issues/) tab or submit a new one.</strong>
  
