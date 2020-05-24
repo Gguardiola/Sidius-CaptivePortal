@@ -336,8 +336,8 @@
 							<br>
 							<div style="text-align: center;text-justify: inter-word;">
 								<ul>
-									<li style="list-style-type:circle">The logo image must be named as <strong>logo.png</strong></li>
-									<li style="list-style-type:circle">The recommended dimensons are <strong>350x210</strong></li>
+									<li style="list-style-type:none">The logo image must be named as <strong>logo.png</strong></li>
+									<li style="list-style-type:none">The recommended dimensons are <strong>350x210</strong></li>
 								<ul>
 								
 							</div>

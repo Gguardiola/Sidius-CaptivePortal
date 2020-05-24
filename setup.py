@@ -21,7 +21,7 @@ def presentation():
     print("      |_______|  |___|   |______|   |___|   |_______|  |_______|")
 
     print("")                                                
-    print("           SIDIUS PROJECT - JGTEK Captive portal SETUP v3.2")
+    print("           SIDIUS PROJECT - JGTEK Captive portal SETUP Release v1.1")
     print("")
     print("Please verify that you comply with the following points before continuing.")   
     print("")  
@@ -207,8 +207,7 @@ def BIND_setup():
         internal_ip = input("- ")    
 
         print("")
-        print(Fore.YELLOW + "IF YOUR SUBNET MASK IS CLASSLESS INSTEAD OF CLASSFULL, LEAVE THE FIELD EMPTY AND CHECK THE DOCUMENTATION ON [LINK]")
-        print(Style.RESET_ALL) 
+
         print("Internal network interface Subnet Mask:")
         print("Example: /24")
         internal_subnetmask = input("- ")   
@@ -245,6 +244,9 @@ def BIND_setup():
     print(Style.RESET_ALL)
 
     #DIRECT ZONE
+
+    #HOW WE WRITE THE CONFIG FILES:
+    #We load a file that has the fields to fill as sample text. We ask the user to enter the value and replace it in the file. To finish, we save it to another file called "handler" and send it to the service path.
     f = open("setupTemplates/direct.db","r")
     direct = f.read()
     direct = direct.replace("sample",domainName)
@@ -518,7 +520,7 @@ def firewall_setup():
         dnsforwarder2 = input("- ")         
 
     print("")
-    print(Fore.YELLOW + "THE DEFAULT PAYMENT GATEWAY IS REDSYS, IF YOU WANT TO CHANGE THIS, PLEASE CHECK DE DOCUMENTATION IN [LINK]")
+    print(Fore.YELLOW + "THE DEFAULT PAYMENT GATEWAY IS REDSYS, IF YOU WANT TO CHANGE THIS, PLEASE CHECK DE DOCUMENTATION IN https://github.com/Gguardiola/Sidius-CaptivePortal/wiki/3.-Manual-installation#handling-of-the-payment-gateway")
     print(Style.RESET_ALL)
     f = open("setupTemplates/iptablesTemplate","r")
     iptablesconf = f.read()
