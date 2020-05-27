@@ -6,6 +6,7 @@
   'db_tableauth' => 'login',
   'db_username' => 'root',
   'db_password' => 'DarthSidius#66',
+  'sship' => '10.110.0.10',
   'internal_int' => 'enp0s8',
   'internal_ip' => '10.222.0.1',
   'external_int' => 'enp0s3',

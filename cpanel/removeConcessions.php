@@ -7,7 +7,7 @@ $INTERNAL=$config["internal_int"];
 $EXTERNALNET=$config['external_subnet'];
 $INTERNALIP=$config['internal_ip'];
 $GATEWAYIP=$config['external_gateway']."/16";
-$SSHIP="10.110.0.10/32";
+$SSHIP=$config['sship'];
 $PAYMENTGATEWAY="sis-t.redsys.es";
 # Adjust those values for DNS Forwarding
 $DNSFORWARDER1=$config['dnsforwarder1'];

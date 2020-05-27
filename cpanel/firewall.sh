@@ -97,7 +97,6 @@ iptables -t nat -A PREROUTING -p tcp -d $PAYMENTGATEWAY -j ACCEPT
 iptables -A FORWARD -p tcp -d fonts.gstatic.com -j ACCEPT
 iptables -t nat -A PREROUTING -p tcp -d fonts.gstatic.com -j ACCEPT
 
-
 iptables -A FORWARD -p tcp -d code.getmdl.io -j ACCEPT
 iptables -t nat -A PREROUTING -p tcp -d code.getmdl.io -j ACCEPT
 

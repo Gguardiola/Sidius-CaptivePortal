@@ -127,7 +127,7 @@ function print_general_settings($config, $error, $devices, $users, $network, $sy
       <br>
       <div valign="bottom">
         <hr class="cardContent">
-        <p class="cardContent alert-info"><strong>INFO:</strong> If you need to edit the configuration of the database parameters please open config.php, if you need to reset the captive portal please use first_run.php</p>
+        <p class="cardContent alert-info"><strong>INFO:</strong> If you need to edit the configuration of the database parameters please open config.php, if you need to reset the captive portal please use first_run.php. If you removed it, you can download it again from <a href="https://github.com/Gguardiola/Sidius-CaptivePortal/blob/master/first_run.php">here.</a></p>
         <hr class="cardContent">
       </div>
     </div>

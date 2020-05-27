@@ -220,6 +220,11 @@
 									<input style="margin-bottom:9px" id="external_gateway" class="mdl-textfield__input" type="text" name="external_gateway">
 									<label class="mdl-textfield__label" for="external_gateway">Example: 10.110.0.1</label>
 								</div>
+								<h6>Remote device IP (SSH)</h6>
+								<div class="mdl-textfield mdl-js-textfield">
+									<input style="margin-bottom:9px" id="sship" class="mdl-textfield__input" type="text" name="sship">
+									<label class="mdl-textfield__label" for="sship">Example: 127.0.0.1</label>
+								</div>								
 								');
 								$handle = fopen("setupTemplates/usingDNSfamilyFriendly", "r");
 								$response = fgets($handle);
@@ -450,6 +455,7 @@
 								$config['external_subnet'] = "$_POST[external_subnet]";
 								$config['dnsforwarder1'] = "$_POST[dnsforwarder1]";
 								$config['dnsforwarder2'] = "$_POST[dnsforwarder2]";
+								$config['sship'] = "$_POST[sship]";
 								file_put_contents('config.php',' <?php return ' . var_export($config, true) . ';');
 								# Everything is done at this point. Go Phase 3.
 								header("Location: first_run.php?page=4");
